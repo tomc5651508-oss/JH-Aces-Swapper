@@ -19,8 +19,7 @@ from parse.gltf_conv import export_model_to_gltf
 from util.assetcacher import AssetCacher
 import util.log as log
 
-SELECTED={'f4f_3':'f4f-3','f4u_4':'f4u-4','sbd_3':'sbd-3','sb2c':'sb2c_4',
-          'a6m3':'a6m3_mod22_zero','j2m2':'j2m2','ki_61':'ki_61_1a_tei','d4y':'d4y3'}
+from slots import SELECTED
 def dump(path,data):
  path.parent.mkdir(parents=True,exist_ok=True)
  path.write_text(json.dumps(data,indent=2,default=lambda o:o.tolist() if hasattr(o,'tolist') else str(o)),encoding='utf-8')

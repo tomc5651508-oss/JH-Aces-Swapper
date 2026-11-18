@@ -6,7 +6,7 @@ import mgm_bos as G, native_helpers as CP, merge_mgm_chunks as MM, native_helper
 import native_helpers as X, wt_dds as D, cockpit_helpers as CK
 from archives import Archives
 from runtime_paths import WORK,GAME,BASE,NAME,PACKAGE,SOURCE,REPORT
-PAIRS={'f4f_3':'P51B5','f4u_4':'P47D22','sbd_3':'IL2M42','a6m3':'Fw190A5','ki_61':'MC202s8'}
+from slots import PAIRS,BY_PLANE,TYPE98_DONOR
 ARCH=Archives(GAME/'data');READS={};A=np.diag([1.,1.,-1.])
 REPORT.mkdir(parents=True,exist_ok=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -23,6 +23,14 @@ def visibility(m,nodes,value):
  for _,an in m.anims:an.tracks=[t for t in an.tracks if not(t.node in ids and t.kind//100==0)]
  for n in nodes:CK.append_track(m,55,n,0,[G.make_key(0,visible=value),G.make_key(1,visible=value)])
 def native(slot):return G.read(readbase(f'data/graphics/planes/{slot}/{slot}-C.mgm'))
+def strip_fit(m):
+ # A re-hosted slot (WT 27) holds the JH model's rigid fit onto the new host in Scene Root (axis swap x fit).
+ # Build in the unfitted frame (the frame of the old host), then restore Scene Root so the Aces parts get the same fit.
+ L=np.array(m.root.local,float).reshape(4,4);K=np.eye(4);K[:3,:3]=np.round(L[:3,:3])
+ if np.array_equal(L,K):return None
+ assert all(np.abs(K[:3,:3]).sum(a).tolist()==[1,1,1] for a in (0,1)),'Scene Root is not an axis swap + rigid fit'
+ F=np.linalg.inv(K)@L;assert np.allclose(F[:3,:3]@F[:3,:3].T,np.eye(3),atol=1e-5),'Scene Root fit is not rigid'
+ orig=m.root.local;m.root.local=tuple(K.ravel());return orig,F
 def template(shader):
  # Exact untouched vanilla material/layout, never a converted WT template.
  path='graphics/planes/p51d15/p51d15-c.mgm'
@@ -84,14 +92,14 @@ def clone_optics(m,source,name,M):
  for k in ['flags','u1','offset','z','w','aux']:setattr(n,k,copy.deepcopy(getattr(source,k)))
  n.local=tuple((G.world_matrix(source)@M@np.linalg.inv(G.world_matrix(m.root))).ravel());return n
 def optical_pair(m,plane,slot,centre,source_width,reticle):
- if plane=='sbd_3':
+ if BY_PLANE[plane]['optic_kind']=='aldis_telescope':
   selected=[n for n in m.nodes() if n.nverts and n.name.startswith('JH24_Aldis_')]
   assert len(selected)>=5;mask=next(n for n in selected if 'Screen_Vizir' in n.name);ret=next(n for n in selected if 'ScreenRings' in n.name)
   c=world(mask).mean(0);axis=world(ret).mean(0)-c;axis/=np.linalg.norm(axis)
   R=CK.rot_between(axis,np.array([1.,0,0]));M=np.eye(4);M[:3,:3]=R;M[3,:3]=centre-c@R
   new=[clone_optics(m,n,'AOT25_'+n.name,M) for n in selected]
   visibility(m,new,1);return new,{'kind':'native Aldis telescope','mask_source':mask.name,'centre':centre.tolist(),'source_dynamic_tele_cards_excluded':True}
- reference=native('Fw190A3');mask=next(n for n in reference.nodes() if n.name=='WT_NATIVE_Type98_Mask');ret=next(n for n in reference.nodes() if n.name=='WT_NATIVE_Type98_Reticle')
+ reference=native(TYPE98_DONOR);mask=next(n for n in reference.nodes() if n.name=='WT_NATIVE_Type98_Mask');ret=next(n for n in reference.nodes() if n.name=='WT_NATIVE_Type98_Reticle')
  c=world(mask).mean(0);axis=world(ret).mean(0)-c;axis/=np.linalg.norm(axis)
  R=CK.rot_between(axis,np.array([1.,0,0]));M=np.eye(4);M[:3,:3]=R;M[3,:3]=centre-c@R
  near=clone_optics(m,mask,'AOT25_Sight_Mask',M);far=clone_optics(m,ret,'AOT25_Sight_Reticle',M)
@@ -103,22 +111,21 @@ def optical_pair(m,plane,slot,centre,source_width,reticle):
 
 EXCLUDE=re.compile(r'^(?:flare|fire|prop|wing|tail|rudder|elevator|aileron|gear|wheel|engine|radiator\d|pylon|bomb|rocket|drop_tank|flap|hook|antenna|gun\d|turret|mgun|Bip|skin$|cloth$|skin_wire|holes|dirt)',re.I)
 def build(plane,slot):
- out=SOURCE/plane;meta=json.loads(next(out.glob('*metadata.json')).read_text());z=np.load(next(out.glob('*mesh.npz')));nodes={n['name']:n for n in meta['nodes']};mats=meta['materials'];m=native(slot)
+ out=SOURCE/plane;meta=json.loads(next(out.glob('*metadata.json')).read_text());z=np.load(next(out.glob('*mesh.npz')));nodes={n['name']:n for n in meta['nodes']};mats=meta['materials'];m=native(slot);fit=strip_fit(m)
  baseline_chunks=list(m.chunks);baseline_nodes=list(m.nodes());baseline_motion={(a,t.node,t.kind):t.keys.tobytes() for a,an in m.anims for t in an.tracks if t.kind//100!=0}
  # Keep the entire donor as an invisible native resource contract.
  visibility(m,[n for n in baseline_nodes if n.nverts],0)
- optic_name='tele' if plane=='sbd_3' else 'collimator';i=next(i for i,o in enumerate(meta['objects']) if o['name']==optic_name)
+ optic_name=BY_PLANE[plane]['source_optic'];i=next(i for i,o in enumerate(meta['objects']) if o['name']==optic_name)
  source_c=z[f'positions_{i}'].mean(0)*[1,1,-1]
- if plane=='sbd_3':target_node=next(n for n in baseline_nodes if n.name=='JH24_Aldis_Aldis_Screen_Vizir05')
- elif plane=='a6m3':target_node=next(n for n in baseline_nodes if n.name=='WT_NATIVE_Type98_Mask')
- elif plane=='f4u_4':target_node=next(n for n in baseline_nodes if n.name=='JH24_F4F_Corsair_JH24_US_Sight_Mask')
- else:target_node=next(n for n in baseline_nodes if n.name in ('JH24_US_Sight_Mask','WT_Sight_Mask'))
+ targets=BY_PLANE[plane]['sight_target_nodes']
+ target_node=next((n for n in baseline_nodes if n.name in targets),None)
+ assert target_node is not None,(plane,slot,'no sight target node',targets)
  centre=world(target_node).mean(0);T=centre-source_c
  cfg=json.loads(next((out/'configuration').glob('*.json')).read_text())
  if 'cockpit' not in cfg:cfg=json.loads((out/'configuration'/json.loads((out/'extraction_report.json').read_text())['configuration']).with_suffix('.json').read_text())
  eye=np.array(cfg['cockpit'].get('headPosVr',cfg['cockpit']['headPos']))*[1,1,-1]+T
  # Sightline goes through the retained native near mask on the aircraft forward axis.
- eye[1:]=centre[1:];eye_rep=set_eye(slot,eye)
+ eye[1:]=centre[1:];eye_rep=set_eye(slot,eye if fit is None else (np.r_[eye,1]@fit[1])[:3])
  bump_tpl,bump_ref=template('SpecularBump');glass_tpl,glass_ref=template('CanopyGlass');spec_tpl,spec_ref=template('Specular')
  moving_args={a for a,an in m.anims if any(t.kind//100 in (1,2) for t in an.tracks)};clip=X.Clip(out,meta['name'])
  bindings={};unbound=[];eligible=[];used=set();excluded=[]
@@ -193,6 +200,9 @@ def build(plane,slot):
     for f in ['flags','u1']:setattr(node,f,copy.deepcopy(getattr(tpl.bones[0],f)))
     pw=world(node);node.bbox=tuple(pw.max(0))+tuple(pw.min(0));guest.append(c);parts.append({'object':nm,'material':mi,'triangles':len(tt),'node':node.name,'role':role})
  optical,opticrep=optical_pair(m,plane,slot,centre,float(np.ptp(z[f'positions_{i}'],axis=0).max()),(mats[meta['objects'][next(j for j,o in enumerate(meta['objects']) if o['name']==optic_name)]['material_indices']['0']]['diffuse'] or '').split('*')[0])
+ if fit is not None:
+  m.root.local=fit[0]
+  for c in guest:pw=world(c.bones[0]);c.bones[0].bbox=tuple(pw.max(0))+tuple(pw.min(0))
  # Repack only new draws; preserve optical pass ordering and all original donor buffers.
  groups={}
  for c in guest:groups.setdefault((c.shader,c.stride,c.u8,tuple(c.textures),c.colors),[]).append(c)
@@ -217,7 +227,7 @@ def build(plane,slot):
   c.bone_map=[(n.index,s) for s,n in enumerate(c.bones)]
   assert len(c.bones)<=64
  raw=G.to_bytes(m);p=put(f'data/graphics/planes/{slot}/{slot}-C.mgm',raw);back=G.read(p);assert G.to_bytes(back)==raw
- report={'plane':plane,'slot':slot,'source_model':meta['name'],'placement_translation':T,'eye':eye_rep,'optics':opticrep,'vanilla_templates':{'bump':bump_ref,'glass':glass_ref},'parts':parts,'bindings':bindings,'unbound_moving':unbound,'excluded':excluded,'textures':texrep,'triangles':sum(x['triangles'] for x in parts),'native_file':str(p),'runtime_tested':False,'limitations':['Source variants differ from existing F4F-4, F4U-1D and Ki-61 Ko identities. Host exterior, FM and systems remain inherited.','Gauge physical calibration, damage/night lighting and skin animation need runtime acceptance.']}
+ report={'plane':plane,'slot':slot,'source_model':meta['name'],'placement_translation':T,'eye':eye_rep,'host_fit':None if fit is None else fit[1],'optics':opticrep,'vanilla_templates':{'bump':bump_ref,'glass':glass_ref},'parts':parts,'bindings':bindings,'unbound_moving':unbound,'excluded':excluded,'textures':texrep,'triangles':sum(x['triangles'] for x in parts),'native_file':str(p),'runtime_tested':False,'limitations':['Source variants differ from existing F4F-4, F4U-1D and Ki-61 Ko identities. Host exterior, FM and systems remain inherited.','Gauge physical calibration, damage/night lighting and skin animation need runtime acceptance.']}
  dump(REPORT/f'{plane}.json',report);print('BUILT',plane,slot,report['triangles'],'tris',len(bindings),'animated objects',flush=True)
  return report
 def main():

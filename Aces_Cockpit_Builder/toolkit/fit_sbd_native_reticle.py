@@ -3,12 +3,13 @@ The telescope FOV/magnification remains a user-runtime acceptance item.
 """
 import build_native_overlay as B
 import json,tempfile
-plane='sbd_3';slot='IL2M42';path=B.PACKAGE/f'data/graphics/planes/{slot}/{slot}-C.mgm'
+from slots import TELESCOPES,TYPE98_DONOR
+T0=TELESCOPES[0];plane=T0['plane'];slot=T0['slot'];path=B.PACKAGE/f'data/graphics/planes/{slot}/{slot}-C.mgm'
 m=B.G.read(path);r=json.loads((B.REPORT/f'{plane}.json').read_text())
 mask=next(n for n in m.nodes() if n.name.startswith('AOT25_JH24') and 'Screen_Vizir' in n.name)
 old=next(n for n in m.nodes() if n.name.startswith('AOT25_JH24') and 'ScreenRings' in n.name)
-donor=B.native('Fw190A3');ref=next(n for n in donor.nodes() if n.name=='WT_NATIVE_Type98_Reticle')
-cfg=json.loads((B.SOURCE/plane/'configuration/sbd-3.json').read_text())
+donor=B.native(TYPE98_DONOR);ref=next(n for n in donor.nodes() if n.name=='WT_NATIVE_Type98_Reticle')
+cfg=json.loads((B.SOURCE/plane/'configuration'/(T0['config']+'.json')).read_text())
 def find(d,k):
  if isinstance(d,dict):
   if k in d:return d[k]
@@ -25,7 +26,7 @@ if new is None:new=B.clone_optics(m,ref,'AOT25_Telescope_Reticle',M)
 rgba=B.D.decode(B.SOURCE/plane/'textures/telesight_us.dds');alpha=rgba[:,:,3].copy()
 assert alpha.max()>0 and alpha.min()==0 and rgba[:,:,:3].max()==0
 rgba[:,:,:3]=255;rgba[:,:,3]=alpha
-tex='AOT25_sbd_3_TelescopeReticle';dest=B.PACKAGE/f'data/graphics/planes/{slot}/Textures/{tex}.dds'
+tex=f'AOT25_{plane}_TelescopeReticle';dest=B.PACKAGE/f'data/graphics/planes/{slot}/Textures/{tex}.dds'
 with tempfile.TemporaryDirectory(dir=B.WORK) as tmp:dest.write_bytes(bytes(B.D.texconv_bc3(rgba,tmp)))
 new.chunk.textures[0]=tex+'.tga';B.visibility(m,[old],0);B.visibility(m,[new],1)
 m.chunks.remove(new.chunk);m.chunks.insert(m.chunks.index(mask.chunk)+1,new.chunk)
@@ -37,4 +38,4 @@ r['optics'].update(source_reticle='telesight_us alpha channel',source_alpha_pres
 # would require a 0.693m head-only displacement, which is not a crew integration.
 from inspect_sbd_gunner_contract import inspect_contract
 r['gunner_view']=inspect_contract()
-B.dump(B.REPORT/'sbd_3.json',r);print('SBD_RETICLE',width,'m; authored alpha preserved; rear native camera retained',flush=True)
+B.dump(B.REPORT/f'{plane}.json',r);print('SBD_RETICLE',width,'m; authored alpha preserved; rear native camera retained',flush=True)
