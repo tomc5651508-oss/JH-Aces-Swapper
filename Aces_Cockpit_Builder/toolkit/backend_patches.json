@@ -1,0 +1,56 @@
+{
+ "upstream": "NotNekroz/wt-asset-explorer@99c794ab102785c39e628033a09bf4ff18dbe64e",
+ "note": "edits applied at setup to the downloaded upstream files; the upstream code is not shipped",
+ "patches": [
+  {
+   "file": "wtx/assets.py",
+   "old": "INDEX_VERSION = 4  # Bumped to support raw byte offset caching",
+   "new": "INDEX_VERSION = 5  # Local Aces GRP3 support; discard cached GRP2 parse failures."
+  },
+  {
+   "file": "wtx/assets.py",
+   "old": "        return glb_file",
+   "new": "        return glb_file\n"
+  },
+  {
+   "file": "dae_core/parse/gameres.py",
+   "old": "\t\tf.seek(0x8, 1)",
+   "new": "\t\tgrp_magic = f.read(4)\n\t\tif grp_magic not in (b'GRP2', b'GRP3'):\n\t\t\traise ValueError(f'Unsupported GRP signature {grp_magic!r}')\n\t\tf.seek(0x8, 0)"
+  },
+  {
+   "file": "dae_core/parse/gameres.py",
+   "old": "\t\t\t\t\t\t\t\treadLong(file))",
+   "new": "\t\t\t\t\t\t\t\t\treadLong(file) if grp_magic == b'GRP2' else 0)"
+  },
+  {
+   "file": "dae_core/parse/material.py",
+   "old": "\t\tf = open(self.filePath, \"rb\")\n\t\tf.seek(0x8, 1)\n\t\tfileCnt = readInt(f)",
+   "new": "\t\tf = open(self.filePath, \"rb\")\n\t\tif f.read(4) != b'DxP2':\n\t\t\traise ValueError('Invalid DxP2 signature')\n\t\tself.__packVersion = readInt(f)\n\t\tif self.__packVersion not in (2, 3):\n\t\t\traise ValueError(f'Unsupported DxP2 version {self.__packVersion}')\n\t\tfileCnt = readInt(f)"
+  },
+  {
+   "file": "dae_core/parse/material.py",
+   "old": "\t\tself.__ddsxRecordsOfs = readInt(file) + 0xC",
+   "new": "\t\tself.__recordStride = 0x18 if self.__packVersion == 2 else 0xC\n\t\tself.__ddsxRecordsOfs = readInt(file) + (0xC if self.__packVersion == 2 else 4)"
+  },
+  {
+   "file": "dae_core/parse/material.py",
+   "old": "\t\t\tfile.seek(self.__ddsxRecordsOfs + id * 0x18, 0)",
+   "new": "\t\t\tfile.seek(self.__ddsxRecordsOfs + id * self.__recordStride, 0)"
+  },
+  {
+   "file": "dae_core/parse/material.py",
+   "old": "\t\tnewName = None\n",
+   "new": "\t\tnewName = None\n\t\t# Extraction keeps the authored block compression, packed channels and mip payload.\n\t\tif texturePaths is None and not forceConvert:\n\t\t\treturn data, texN\n"
+  },
+  {
+   "file": "dae_core/parse/material.py",
+   "old": "\tmtl.exportTextures()",
+   "new": "\tmtl.exportTextures()\n"
+  },
+  {
+   "file": "dae_core/util/decompression.py",
+   "old": "\t\tif self.cMethod == 0x40:",
+   "new": "\t\tif self.cMethod == 0:\n\t\t\tdata = self.cData\n\t\telif self.cMethod == 0x40:"
+  }
+ ]
+}

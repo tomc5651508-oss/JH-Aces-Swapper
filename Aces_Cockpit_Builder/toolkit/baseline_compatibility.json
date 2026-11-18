@@ -1,0 +1,74 @@
+{
+  "data/graphics/planes/P51B5/P51B5-C.mgm": [
+    "f3a44ca878e2aaeee16185acb35871d9014e2b4ef6ef0be8dec2c877f4e5796f",
+    "730f7e1c2f25301679f4a71d7f0dd151c5dde25f8a252d144302f341eb27903e"
+  ],
+  "data/LuaScripts/WorldObjects/planes/P51B5.txt": [
+    "3129f41127dc1e5145eead606e10c81ba9116d7545887a857dc3d2a09753bc3e",
+    "527067e770891a2e3a78ebafb8e4d638e480431500aa499eaadb8d9e65ade2f3"
+  ],
+  "data/LuaScripts/WorldObjects/Bots/JH120_CarrierPilot_P51B5.txt": [
+    "2ddda83a4ff4573a25a035d6cb5195b2c1a8674d42273a623c04a6f1ab10cb40"
+  ],
+  "data/graphics/planes/P51B5/P51B5-C.txt": [
+    "6d36448940d6b03629ef17156f5683440a06ceba43989976bdec619bb5e79a10"
+  ],
+  "data/graphics/planes/Fw190A3/Fw190A3-C.mgm": [
+    "2081e814dc7df920ccd27af45be7095c5b376cf7f33f1a1ee0719ebd4c407c89"
+  ],
+  "data/graphics/planes/P47D22/P47D22-C.mgm": [
+    "87210bffe3274ea51d93bea21c0499ec4172505e6261287dba4bf462f5416e39",
+    "3781b1ad666032134041493d2d756a23e62fdd10005e132d6350807cd1877864"
+  ],
+  "data/LuaScripts/WorldObjects/planes/P47D22.txt": [
+    "53339fd38cd2a4bb1fa9ded6226bbe7ae78c8f96e0b935d931fbb103c565682b",
+    "580ecbb5fd03236ab07669a44a80ede1616cd823c6d139bb41ab3b9e5c878098"
+  ],
+  "data/LuaScripts/WorldObjects/Bots/JH120_CarrierPilot_P47D22.txt": [
+    "19999bde87f575d31aac6be1f618a4fb9d193f70c92f02bef8b3a46b30cf54c0"
+  ],
+  "data/graphics/planes/P47D22/P47D22-C.txt": [
+    "8636d73f60baca0a1109e7e98ffdee1951c2cb39aae2429a6a3fa80d5d3a055b"
+  ],
+  "data/graphics/planes/IL2M42/IL2M42-C.mgm": [
+    "74776e878402a0a2a60ca579c541b4b158f3fa33af71df6030e11913c737fd5f",
+    "3a0fddc40838f636c7c41f82a704559a07c2eeeb6c37d98f14801c0c9b525f07"
+  ],
+  "data/LuaScripts/WorldObjects/planes/IL2M42.txt": [
+    "372e77215163598fec61f17e3716ca9bf15f960af4447d1d45d981ff703290c1",
+    "4a0856434d8a5328ca5652fac2465880835ce97af17271bbce1abc0a6b3dede5"
+  ],
+  "data/LuaScripts/WorldObjects/Bots/JH120_Pilot_IL2M42.txt": [
+    "e83f6c0e83bf87373574247c50ef707ceb84db9b28fcc451e45d221c16a30563"
+  ],
+  "data/graphics/planes/IL2M42/IL2M42-C.txt": [
+    "c42464b20de94f12ab84a76608dd512fcfc1f307cd6d66f4b430f15e9a98d9b8"
+  ],
+  "data/graphics/planes/Fw190A5/Fw190A5-C.mgm": [
+    "5a15932cbd5e7f500a4253e9a275956cbb908031054f87b6678f870a1c7d6f98"
+  ],
+  "data/LuaScripts/WorldObjects/planes/Fw190A5.txt": [
+    "00117846a52cb9efe85ad5a72093f3c8a6e770ac15d64f12b3c22d6dd403078f",
+    "a66a476ef1cdde6133d9d86d429083b9966e655842a1e4b51e5cf490bc540f4b"
+  ],
+  "data/LuaScripts/WorldObjects/Bots/P4_Pilot_Fw190A5.txt": [
+    "911ff80524b38349e9d4fe1b0f6401b60ae4f55cde8a5eed117f8aa10ed7171e"
+  ],
+  "data/graphics/planes/Fw190A5/Fw190A5-C.txt": [
+    "84bbb0f5bad03ab075d9dead447cc60246013f7e6b496c2f10c53bdcc26116c0"
+  ],
+  "data/graphics/planes/MC202s8/MC202s8-C.mgm": [
+    "5ec300a7be9d7e4b7ff0d267dc1be0c408bb7a9ac6683d4b499fd2ea726fd8f8",
+    "616f3981aa60156b9230feb1ab890fdceb230db9353ce825d37f85e6c6e4bbde"
+  ],
+  "data/LuaScripts/WorldObjects/planes/MC202s8.txt": [
+    "784f764e7513a578ee2c48bec1eeba2a800165942c0b96a099616fab6b2a5abe",
+    "f055bc0881001873c523d0fa1ddfee7f81a5597c15c9b86705abc334ab9992d5"
+  ],
+  "data/LuaScripts/WorldObjects/Bots/P4_Pilot_MC202s8.txt": [
+    "cdbad845a8f091b53c7995406a534d73f8f3ab5901397695d9f84325e06e01fc"
+  ],
+  "data/graphics/planes/MC202s8/MC202s8-C.txt": [
+    "3798b369a17a40854dd0215d6c271ae2df1bae674863d6e015526be64f6058d3"
+  ]
+}

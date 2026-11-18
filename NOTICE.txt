@@ -1,0 +1,1 @@
+wt-asset-explorer (NotNekroz) is NOT in this repo: Aces_Cockpit_Builder setup downloads its pinned GitHub commit and applies the builder's own edits from toolkit\backend_patches.json. daKernel-dev.dll (Gaijin) and texconv are fetched at setup as well. ACL decoder licence: Aces_Cockpit_Builder/toolkit/ACL_LICENSE.txt. See Aces_Cockpit_Builder/NOTICE.txt.

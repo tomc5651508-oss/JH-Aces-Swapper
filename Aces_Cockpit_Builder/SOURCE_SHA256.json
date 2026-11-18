@@ -1,0 +1,197 @@
+[
+  {
+    "file": "Bootstrap.ps1",
+    "bytes": 3140,
+    "sha256": "f353af9f1ccd0acde0c4edd1a6f7ff401ed3d752375dc02950c201fd8e351ee7"
+  },
+  {
+    "file": "Build Cockpit Mod.bat",
+    "bytes": 143,
+    "sha256": "2f6023b9f7bf4df9a026f5d14bb213988f94f5001bf5e31a9475d5e5447bd853"
+  },
+  {
+    "file": "Builder.ps1",
+    "bytes": 10083,
+    "sha256": "18b14b86f3a3df14f95728544eab740b8c80b6c2f6d79f8914d78fd53e0bdb23"
+  },
+  {
+    "file": "DownloadTool.ps1",
+    "bytes": 296,
+    "sha256": "27aa554f43ff8c6fe3d0775a63d6b3e4379b57d64293cbb6296190234a49917f"
+  },
+  {
+    "file": "MOD_README.txt",
+    "bytes": 2148,
+    "sha256": "686139c9450a533249c75bfec24385b281547a2dac4932aacf309d7e9ba5ada0"
+  },
+  {
+    "file": "NOTICE.txt",
+    "bytes": 3285,
+    "sha256": "a3030d7b03eb218faa964b6c680189698900963ce8c4405d9cd64412214e8447"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4399,
+    "sha256": "2631c7ed8cfab67320c1d55870c83f5cb37d0cd8c64370f86745a64616b7a10e"
+  },
+  {
+    "file": "toolkit/aces_cockpit_params.json",
+    "bytes": 1378,
+    "sha256": "c6d7b7fbdcd8a12cc3a3e01a5f3bf9f504b954f9489caefd087a32a39d0ac9e1"
+  },
+  {
+    "file": "toolkit/ACL_LICENSE.txt",
+    "bytes": 1120,
+    "sha256": "f706403ad318029b593c6acdfc98d3ba8dbdf501e61e466bc417ed68af11599e"
+  },
+  {
+    "file": "toolkit/archives.py",
+    "bytes": 1529,
+    "sha256": "e8619017c54f7d1ffcfce9cd68dc5e383dd6a5201f72fbe8259ad0f7487b3302"
+  },
+  {
+    "file": "toolkit/audit_dds.py",
+    "bytes": 3774,
+    "sha256": "9a2d65a0a44e0bde175840c55fda773fe512b55a85a8f0abf7c20845d7cb2d76"
+  },
+  {
+    "file": "toolkit/baseline_compatibility.json",
+    "bytes": 3453,
+    "sha256": "7ee8898e81faf1a4a0ffb18106a94c31a29903f08529159913fc038a1734543e"
+  },
+  {
+    "file": "toolkit/build_native_overlay.py",
+    "bytes": 17605,
+    "sha256": "bdd412789fb822bde33cd40385495dda9bb9fe7121772415ddf049cd046a670b"
+  },
+  {
+    "file": "toolkit/cockpit_animation.py",
+    "bytes": 4126,
+    "sha256": "22fb2495b3e0751f22b0c1318a95d43cc523cad05f52132c5b0e5b6fd8b3ba1e"
+  },
+  {
+    "file": "toolkit/cockpit_helpers.py",
+    "bytes": 3096,
+    "sha256": "2b9e5ff2741979a70580623ef3acf34583a73cb81bb704de341c410c20d38a4b"
+  },
+  {
+    "file": "toolkit/dependency_check.py",
+    "bytes": 91,
+    "sha256": "f5e3c4c2d5fdbe45522771c5bfe6ea3f5df107708a61b13d7d0367fea81725a2"
+  },
+  {
+    "file": "toolkit/extract_cockpits.py",
+    "bytes": 7628,
+    "sha256": "41a86dd2671d9130d34fc89ec8e6426258c4624d397f704ac6fa1d23cad30ed2"
+  },
+  {
+    "file": "toolkit/finish_assets.py",
+    "bytes": 4154,
+    "sha256": "3bf1254ac509e571fc4dea86008da234739397a6446d9cf0907b024e8ff02033"
+  },
+  {
+    "file": "toolkit/finish_native_overlay.py",
+    "bytes": 2373,
+    "sha256": "c5619d80f8a29234b1c3faf71a8d488800fe221817dc877a0a0de0a4b9ce5db1"
+  },
+  {
+    "file": "toolkit/fit_sbd_native_reticle.py",
+    "bytes": 3159,
+    "sha256": "37c5ba739f791a784edc61f0034832ee85ceeb1fae3e6929c39a870fbdd736f6"
+  },
+  {
+    "file": "toolkit/fix_native_glass.py",
+    "bytes": 3460,
+    "sha256": "fe6566529fd15fe9fd430e6ebb0dafb443bd6bd65972fb17db8e44ed3addaa08"
+  },
+  {
+    "file": "toolkit/gtp_extract.py",
+    "bytes": 2755,
+    "sha256": "53ea0741a66223db72407ab028afa12ed248a433cb13276d5cb3b4ce5f6087ab"
+  },
+  {
+    "file": "toolkit/inspect_mgm.py",
+    "bytes": 8939,
+    "sha256": "b1f6f216bdce5272ad0c6be5fcc0da15ae1c9071c9afa590b5bad85a0bb09aac"
+  },
+  {
+    "file": "toolkit/inspect_sbd_gunner_contract.py",
+    "bytes": 2034,
+    "sha256": "f24a7c5172b99e7ef8149e6732f2d5a948b78b0d39da402b42fdd0de2a7de714"
+  },
+  {
+    "file": "toolkit/match_overlay_materials.py",
+    "bytes": 2615,
+    "sha256": "8d6d8573e38e396c01325955ff3062fef078b542fa418bd957714aabcfe0f8f1"
+  },
+  {
+    "file": "toolkit/material_helpers.py",
+    "bytes": 3534,
+    "sha256": "6f073c19c29d99c12bea493c301907cdf87d9b5e2fc238250314bfa2f914c374"
+  },
+  {
+    "file": "toolkit/material_targets.json",
+    "bytes": 2744,
+    "sha256": "5a637851288baf2429b0d65131b6ec018b9f007392816fa4e5423432e2aee3a0"
+  },
+  {
+    "file": "toolkit/merge_mgm_chunks.py",
+    "bytes": 6761,
+    "sha256": "dbc4551ed6e260a6bf2f7d92ed747852faf389481cabe18c7147653b1f9d918b"
+  },
+  {
+    "file": "toolkit/mgm_bos.py",
+    "bytes": 33722,
+    "sha256": "92a8b73be2bc57b281bb1a11668ca275a9506fa7946809f3b889e7423460a5b1"
+  },
+  {
+    "file": "toolkit/native_helpers.py",
+    "bytes": 4977,
+    "sha256": "23e2fcee578fa679194601df60f7c7bc33380e8d40008083c942bde67e9b4e9e"
+  },
+  {
+    "file": "toolkit/repair_texture_containers.py",
+    "bytes": 2068,
+    "sha256": "8d07d5ef13e24a8ce0d9849c854b25f36899d34feae572a308997d588336a89a"
+  },
+  {
+    "file": "toolkit/requirements.txt",
+    "bytes": 431,
+    "sha256": "064c6cd0d0a747d65ce347e284e34f64121441ce298cd47e9dfd959605fb5dfb"
+  },
+  {
+    "file": "toolkit/resource_budget.py",
+    "bytes": 3832,
+    "sha256": "1db8681559cc2107e290c64358038aa8a23344183742e7d99160c330df429523"
+  },
+  {
+    "file": "toolkit/runtime_paths.py",
+    "bytes": 400,
+    "sha256": "9b2f9bb0c2a77fa895b2ffe15b21d597b78981bf7149ae50bea342919d95c26e"
+  },
+  {
+    "file": "toolkit/tools_setup.py",
+    "bytes": 1720,
+    "sha256": "d6e20b69b458771b4d57f1eb942028774fb220948add083630d3412e86c896d7"
+  },
+  {
+    "file": "toolkit/verify_selected_base.py",
+    "bytes": 1879,
+    "sha256": "ff4376cdf8a7cee32441210aa122fcc19d99b020065db7a3b8503dcf87bcd145"
+  },
+  {
+    "file": "toolkit/worker.py",
+    "bytes": 8640,
+    "sha256": "f8ea2766106832987c4d2adb3b6fbe1b9f0f07db2fcfb8d82094c86164067290"
+  },
+  {
+    "file": "toolkit/wt_dds.py",
+    "bytes": 6386,
+    "sha256": "610db43604c6918cf9b8a6e353fce5c2a89dbd5375af93b4140d0038d64a926b"
+  },
+  {
+    "file": "toolkit/zero_native_dds.py",
+    "bytes": 4451,
+    "sha256": "1f013d77b687635e79153ea6b38ef2296273f07826cddc66816084de890d4c66"
+  }
+]

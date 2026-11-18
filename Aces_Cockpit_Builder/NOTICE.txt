@@ -1,0 +1,61 @@
+Aces Cockpit Builder for Jungle Hawks 2.5 WT - ownership and purpose notice
+==========================================================================
+
+This file is in the builder folder and is copied into every folder the builder generates.
+
+
+WHO OWNS WHAT
+-------------
+
+Aces of Thunder content - Gaijin Entertainment
+  The cockpit models, textures, animations and configuration values that end up in a
+  generated folder belong to Gaijin Entertainment. The builder does not ship any of them.
+  It reads them from the player's own installed copy of Aces of Thunder, on the player's PC.
+
+  One exception, stated plainly: toolkit\aces_cockpit_params.json holds a handful of numeric
+  values read from the game's configuration (pilot eye positions, the SBD telescope reticle
+  scale and the SBD rear gunner eye position). They are there so the builder does not have to
+  unpack the game's configuration archive (aces.vromfs.bin). They remain Gaijin's data.
+
+IL-2 Great Battles content - 1C Game Studios / the IL-2 Great Battles developers
+  The donor shaders, materials and models used to make the cockpits work in IL-2 belong to
+  them. The builder reads them from the player's own IL-2 Great Battles install.
+
+Jungle Hawks and this builder - Pingu (pingu565) and the Jungle Hawks contributors
+  The Jungle Hawks base mod and this builder's own scripts (Builder.ps1, Bootstrap.ps1 and
+  the toolkit\*.py files other than those listed below).
+
+Third-party tools - each under its own licence and terms
+  - wt-asset-explorer by NotNekroz (GitHub, pinned commit 99c794ab). NOT included: setup downloads
+    that commit from GitHub and applies the builder's own edits (toolkit\backend_patches.json,
+    10 find/replace pairs in wtx\assets.py, parse\gameres.py, parse\material.py,
+    util\decompression.py). All rights stay with its author.
+  - daKernel-dev.dll (Gaijin Entertainment). Fetched at setup from the wt-asset-explorer
+    repository, not included here. Used only for Oodle decompression.
+  - texconv, Microsoft DirectXTex. Fetched at setup, not included here.
+  - Python 3.11 (Python Software Foundation) and the PyPI packages pinned in
+    toolkit\requirements.txt. Fetched at setup, not included here.
+  - The NumPy ACL animation decoder is ported from the Animation Compression Library
+    (MIT licence, Nicholas Frechette and contributors). See toolkit\ACL_LICENSE.txt.
+
+
+WHY THIS EXISTS
+---------------
+
+Jungle Hawks is a free, non-commercial Pacific fan mod for IL-2 Great Battles. The Pacific
+aircraft it flies have no detailed cockpits in IL-2. This builder lets players who own
+Aces of Thunder see those cockpits in their own game.
+
+It is a builder, not a download, so that no Gaijin files are distributed. Each player converts
+their own licensed copy, on their own PC, for their own use.
+
+
+RULES
+-----
+
+- Free. Never sold, and never put behind Patreon or any other paywall.
+- Do not share or upload the generated folder. Each player builds their own.
+- Not affiliated with or endorsed by Gaijin Entertainment or the IL-2 Great Battles developers.
+- Any rights holder who objects can contact pingu565 on Discord, and it will be taken down.
+
+This notice is not legal advice. Respect the terms of each game you own.
