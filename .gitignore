@@ -3,3 +3,11 @@ Aces_Cockpit_Builder/.tools/
 __pycache__/
 JH_Swap_Tool/build/
 JH_Swap_Tool/dist/
+# never commit game assets or generated packs - only the pipeline
+Aces_Cockpit_Builder/.work/
+**/test_out/
+/JH_PR_2.5 WT - Aces Cockpits and Optics*/
+/JH WT ASSET PACK*/
+*.vromfs.bin
+*.grp
+*.dxp.bin
