@@ -3,7 +3,9 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 $root = $PSScriptRoot
-$packName = 'JH_PR_2.5 WT - Aces Cockpits and Optics'
+$slots = Get-Content -LiteralPath (Join-Path $root 'toolkit\slots.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$packName = $slots.pack_name
+$planeList = (@($slots.cockpits | ForEach-Object { $_.label }) -join ', ')
 $script:process = $null
 $script:runOut = ''; $script:runErr = ''
 function Steam-Libraries {
@@ -16,7 +18,7 @@ function Steam-Libraries {
 }
 function Find-Game([string]$Name) { foreach ($library in (Steam-Libraries)) { $p = Join-Path $library "steamapps\common\$Name"; if (Test-Path -LiteralPath $p) { return $p } }; return '' }
 $form = New-Object Windows.Forms.Form
-$form.Text = 'Aces of Thunder - JH 2.5 Cockpit Mod Builder'
+$form.Text = 'Jungle Hawks - Cockpit Overlay Builder'
 $form.ClientSize = New-Object Drawing.Size(970,770)
 $form.StartPosition = 'CenterScreen'; $form.MinimumSize = $form.Size
 $form.BackColor = [Drawing.Color]::FromArgb(16,28,21); $form.ForeColor = [Drawing.Color]::White
@@ -29,7 +31,7 @@ function Button([string]$Text,[int]$X,[int]$Y,[int]$W,[int]$H) {
 }
 $title = Label 'Build the cockpit overlay from your own Aces install' 24 20 920 38
 $title.Font = New-Object Drawing.Font('Segoe UI',18,[Drawing.FontStyle]::Bold)
-$intro = Label 'F4F-3, F4U-4, SBD-3, A6M3 and Ki-61: sights, gauges, normals and animation bindings. Free, personal use only; see NOTICE.txt.' 24 68 920 30
+$intro = Label ($planeList+': sights, gauges, normals and animation bindings. Free, personal use only; see NOTICE.txt.') 24 68 920 30
 $boxes = @{}
 $script:folderButtons = @()
 function Folder-Row([string]$Key,[string]$Title,[int]$Y,[string]$Help) {
@@ -64,10 +66,10 @@ $boxes['aot'].Text = Find-Game 'Aces of Thunder'
 $boxes['il2'].Text = Find-Game 'IL-2 Sturmovik Battle of Stalingrad'
 if ($boxes['il2'].Text) {
     $mods = Join-Path $boxes['il2'].Text 'MODS'
-    $newest = @(Get-ChildItem -LiteralPath $mods -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^JH_PR_2\.5 Jungle Hawks - WT (\d+)$' } |
-        Sort-Object { [int]([regex]::Match($_.Name,'(\d+)$').Value) } -Descending | Select-Object -First 1)
+    $newest = @(Get-ChildItem -LiteralPath $mods -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match $slots.base.folder_pattern } |
+        Sort-Object { $n = [regex]::Match($_.Name,'(\d+(\.\d+)?)$').Value; if ($n -notmatch '\.') { $n += '.0' }; [version]$n } -Descending | Select-Object -First 1)
     if ($newest.Count) { $boxes['base'].Text = $newest[0].FullName }
-    else { foreach ($name in @('JH_PR_2.5 Jungle Hawks - WT 19','JH_PR_2.5 Jungle Hawks - WT 18','JH_PR_2.5 Jungle Hawks - WT')) {
+    else { foreach ($name in @($slots.base.fallbacks)) {
         $candidate = Join-Path $mods $name
         if (Test-Path -LiteralPath $candidate) { $boxes['base'].Text = $candidate; break }
     } }
@@ -110,6 +112,18 @@ $build.Add_Click({
     } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Cannot start build','OK','Warning') | Out-Null }
 })
 $form.Add_FormClosing({ if ($script:process -and !$script:process.HasExited) { $_.Cancel = $true; [Windows.Forms.MessageBox]::Show('The build is still running. Keep this window open until it finishes.','Build in progress') | Out-Null } })
+# UI only: the mod's own loading-screen art as a banner; every control moves down by its height
+$bannerPath = Join-Path $root 'art\banner.png'
+if (Test-Path -LiteralPath $bannerPath) {
+    $bannerH = 150
+    foreach ($control in @($form.Controls)) { $control.Top += $bannerH }
+    $form.ClientSize = New-Object Drawing.Size($form.ClientSize.Width,($form.ClientSize.Height + $bannerH))
+    $form.MinimumSize = $form.Size
+    $banner = New-Object Windows.Forms.PictureBox
+    $banner.Image = [Drawing.Image]::FromFile($bannerPath); $banner.SizeMode = 'Zoom'
+    $banner.SetBounds(0,0,$form.ClientSize.Width,$bannerH); $banner.BackColor = $form.BackColor
+    $form.Controls.Add($banner)
+}
 if ($SelfTest) {
     if ($boxes.Count -ne 4) { throw 'Expected four folder fields' }
     if ($keep.Checked) { throw 'Keep-source option must default to off' }

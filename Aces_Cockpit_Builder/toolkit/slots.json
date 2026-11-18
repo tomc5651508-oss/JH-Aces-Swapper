@@ -2,7 +2,7 @@
  "_about": "Slot map for the Aces Cockpit Builder, JH 2.5 WT 27 (Japanese fighters re-hosted to owned planes). A new JH base with moved slots needs only a change here (plus base hashes in baseline_compatibility.json). Read by toolkit\\slots.py and Builder.ps1. Older bases (WT, WT 18 to WT 26): job config \"slots\": \"<builder>\\\\toolkit\\\\slots_wt18-26.json\".",
  "pack_name": "JH_PR_2.5 WT - Aces Cockpits and Optics",
  "base": {
-  "folder_pattern": "^JH_PR_2\\.5 Jungle Hawks - WT (\\d+)$",
+  "folder_pattern": "^JH_PR_2\\.5 Jungle Hawks - WT (\\d+(\\.\\d+)?)$",
   "fallbacks": ["JH_PR_2.5 Jungle Hawks - WT 27"],
   "supported_text": "WT 27"
  },
