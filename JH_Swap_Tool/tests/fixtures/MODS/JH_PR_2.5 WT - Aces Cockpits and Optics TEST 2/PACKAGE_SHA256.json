@@ -1,0 +1,42 @@
+[
+ {
+  "file": "data/graphics/planes/A6M5/A6M5-C.mgm",
+  "bytes": 17,
+  "sha256": "34e34be6f12f190204072f38d708bf9391ca5202a6f11caa59aa876ac90b1e5f"
+ },
+ {
+  "file": "data/graphics/planes/Fw190A3/Fw190A3-C.mgm",
+  "bytes": 20,
+  "sha256": "09cdc9075a41d3bd8bb53765b188487eca657c2b4f2fd73ec5a25e4799cc2443"
+ },
+ {
+  "file": "data/graphics/planes/Fw190A3/Textures/AOT25_a6m2_0.dds",
+  "bytes": 10,
+  "sha256": "d46d62ec5a37f34fa02cf1f02374c2936c07d48f3920bd60f96f60fe92efb1c3"
+ },
+ {
+  "file": "data/graphics/planes/IL2M42/IL2M42-C.mgm",
+  "bytes": 19,
+  "sha256": "d704780a695bc55c17258d098e02017bf3c56a6b4d06bbafaae9f85e3eb81da5"
+ },
+ {
+  "file": "data/graphics/planes/IL2M42/IL2M42-C.txt",
+  "bytes": 23,
+  "sha256": "37997c6ee40416f588b956654ff0981d847999865ea0f376556f4a27fb5e109b"
+ },
+ {
+  "file": "data/LuaScripts/WorldObjects/Bots/JH120_Pilot_IL2M42.txt",
+  "bytes": 17,
+  "sha256": "b4156c2f94b3a713d56f313d341ecd1f770ab9fcb8260e4af8549fb3ad5b114e"
+ },
+ {
+  "file": "data/LuaScripts/WorldObjects/planes/IL2M42.txt",
+  "bytes": 17,
+  "sha256": "b024e0b52f03400685a036f6eaca8d28f7ac5e91cf539c9567cd8fbf789fb185"
+ },
+ {
+  "file": "README.txt",
+  "bytes": 13,
+  "sha256": "22674b96f33356a31f3dcdc1e3e7e70f83da2a92121ddbf5366e366b2bc7acb5"
+ }
+]

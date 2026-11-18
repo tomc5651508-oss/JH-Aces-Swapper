@@ -1,7 +1,7 @@
 """Repair atlas-role mismatch, preserving host meshes and non-glass material data."""
 import build_native_overlay as B
 import json,re
-US={'f4f_3':('P51B5','F4F4W_glass'),'f4u_4':('P47D22','F4U1DW_glass'),'sbd_3':('IL2M42','SBDW_glass')}
+from slots import GLASS as US
 rows=[]
 for plane,(slot,tex) in US.items():
  donor=B.native(slot)

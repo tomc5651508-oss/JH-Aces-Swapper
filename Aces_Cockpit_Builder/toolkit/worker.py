@@ -2,7 +2,13 @@
 import argparse,datetime,hashlib,json,os,runpy,shutil,subprocess,sys,traceback,uuid
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
-PAIRS={'f4f_3':'P51B5','f4u_4':'P47D22','sbd_3':'IL2M42','a6m3':'Fw190A5','ki_61':'MC202s8'}
+if __name__=='__main__':
+ # A job may name its own slot map (for a base with moved slots); child steps inherit it.
+ import argparse as _a;_p=_a.ArgumentParser(add_help=False);_p.add_argument('--config',type=Path);_k=_p.parse_known_args()[0]
+ if _k.config and _k.config.is_file():
+  _s=json.loads(_k.config.read_text(encoding='utf-8-sig')).get('slots')
+  if _s:os.environ['AOT_SLOTS']=str(Path(_s).resolve())
+from slots import PAIRS,DATA as SLOTS
 # Kept after a successful build unless keep_source is set: reports only, no Gaijin-derived data.
 KEEP_PLANE_FILES={'extraction_report.json','texture_validation.json','gunner_positions'}
 EXTRACTED_SUFFIXES=('.dds','.ddsx','.glb','.obj','.dmf','.mtl','.npz','.bin','.png','.a2d','.mgm','.tga')
@@ -22,10 +28,25 @@ def preflight(cfg):
  if inside(out,ROOT.parent):raise ValueError('Output must be separate from this builder folder.')
  if out.name.startswith('!'):raise ValueError('Do not use a JSGME backup/control folder as output.')
  expected=json.loads((ROOT/'baseline_compatibility.json').read_text())
+ # Only rows of the slots in use (and the Type98 donor) are checked, so a base with moved slots needs no dead rows.
+ used={x.lower() for x in list(PAIRS.values())+[SLOTS['type98_donor_slot']]}
+ def row_slot(rel):
+  r=rel.replace('\\','/').split('/');n=r[-1].lower()
+  if 'graphics' in [q.lower() for q in r]:return r[-2].lower()
+  if n.endswith('.txt'):return n[:-4].split('_')[-1]
+ # A slot whose plane script names a bot of another slot (re-host) lists that bot in slots.json; it is pinned too.
+ bots={c['bot'].lower() for c in SLOTS['cockpits'] if c.get('bot')}
+ for c in SLOTS['cockpits']:
+  if c.get('bot'):
+   script=(base/f"data/LuaScripts/WorldObjects/planes/{c['slot']}.txt")
+   if not script.is_file() or c['bot'].lower().removeprefix('data/') not in script.read_text(encoding='latin1').lower():raise ValueError('Plane script of slot '+c['slot']+' does not name the bot '+c['bot']+' (slots.json).')
+ expected={rel:w for rel,w in expected.items() if row_slot(rel) in used or rel.lower() in bots}
+ missing=sorted(used-{row_slot(rel) for rel in expected})
+ if missing:raise ValueError('No pinned base hashes for slot(s) '+', '.join(missing)+' in baseline_compatibility.json.')
  for rel,want in expected.items():
   p=base/rel
   choices=want if isinstance(want,list) else [want]
-  if not p.is_file() or sha(p) not in choices:raise ValueError('This base differs from the tested JH 2.5 WT native donor: '+rel+'. Select a supported JH 2.5 WT base (WT, WT 18 to WT 25), not the Aces overlay.')
+  if not p.is_file() or sha(p) not in choices:raise ValueError('This base differs from the tested JH 2.5 WT native donor: '+rel+'. Select a supported JH 2.5 WT base ('+SLOTS['base']['supported_text']+'), not the Aces overlay.')
  return aot,il2,base,out
 def clean_scratch(work,package):
  # Delete the extracted Gaijin source material and the scratch copy of the package; keep reports.

@@ -1,0 +1,28 @@
+{
+ "_about": "Slot map for the Aces Cockpit Builder, JH 2.5 WT 27 (Japanese fighters re-hosted to owned planes). A new JH base with moved slots needs only a change here (plus base hashes in baseline_compatibility.json). Read by toolkit\\slots.py and Builder.ps1. Older bases (WT, WT 18 to WT 26): job config \"slots\": \"<builder>\\\\toolkit\\\\slots_wt18-26.json\".",
+ "pack_name": "JH_PR_2.5 WT - Aces Cockpits and Optics",
+ "base": {
+  "folder_pattern": "^JH_PR_2\\.5 Jungle Hawks - WT (\\d+)$",
+  "fallbacks": ["JH_PR_2.5 Jungle Hawks - WT 27"],
+  "supported_text": "WT 27"
+ },
+ "type98_donor_slot": "Fw190A5",
+ "cockpits": [
+  {"plane": "f4f_3", "config": "f4f-3", "label": "F4F-3", "jh_type": "F4F-4 Wildcat", "slot": "P51B5",
+   "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_US_Sight_Mask", "WT_Sight_Mask"],
+   "glass_atlas": "F4F4W_glass"},
+  {"plane": "f4u_4", "config": "f4u-4", "label": "F4U-4", "jh_type": "F4U-1D Corsair", "slot": "P47D22",
+   "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_F4F_Corsair_JH24_US_Sight_Mask"],
+   "glass_atlas": "F4U1DW_glass"},
+  {"plane": "sbd_3", "config": "sbd-3", "label": "SBD-3", "jh_type": "SBD-3 Dauntless", "slot": "IL2M42",
+   "source_optic": "tele", "optic_kind": "aldis_telescope", "sight_target_nodes": ["JH24_Aldis_Aldis_Screen_Vizir05"],
+   "glass_atlas": "SBDW_glass", "gunner_turret_script": "data/LuaScripts/WorldObjects/Planes/Turrets/P4_sbd3_Gun_1.txt"},
+  {"plane": "a6m3", "config": "a6m3_mod22_zero", "label": "A6M3", "jh_type": "A6M3 Zero", "slot": "Fw190A5",
+   "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["WT_NATIVE_Type98_Mask"]},
+  {"plane": "ki_61", "config": "ki_61_1a_tei", "label": "Ki-61", "jh_type": "Ki-61 Hien", "slot": "Bf109F4",
+   "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_US_Sight_Mask", "WT_Sight_Mask"],
+   "bot": "data/LuaScripts/WorldObjects/Bots/P4_Pilot_MC202s8.txt"}
+ ],
+ "unassigned": {"sb2c": "sb2c_4", "j2m2": "j2m2", "d4y": "d4y3"},
+ "reflector_hide": {"mode": "list", "slots": ["Bf110E2", "IL2m44", "LaGG3s29", "MosquitoFBMkVIs2", "Yak1s69"], "exclude_slots": []}
+}

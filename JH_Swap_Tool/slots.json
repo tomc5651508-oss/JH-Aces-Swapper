@@ -1,0 +1,28 @@
+{
+  "_about": "Host slot -> JH aircraft. WT 27 moved four Japanese fighters to owned hosts (A6M2 LaGG3s29, A6M5 Yak1s69, Ki-43 Bf109F2, Ki-61 Bf109F4); the JH 1946 core keeps them on Fw190A3, A6M5, La5s8, MC202s8. Both host slots are listed: the WT look and the Aces cockpit exist only on the WT 27 host, the JH 1946 look only on the 1946 host.",
+  "slots": [
+    {"slot": "A6M5", "aircraft": "A6M5 Zero (1946 host)"},
+    {"slot": "Yak1s69", "aircraft": "A6M5 Zero (WT 27 host)"},
+    {"slot": "Fw190A3", "aircraft": "A6M2 Zero (1946 host)"},
+    {"slot": "LaGG3s29", "aircraft": "A6M2 Zero (WT 27 host)"},
+    {"slot": "Fw190A5", "aircraft": "A6M3 Zero"},
+    {"slot": "Bf110E2", "aircraft": "Ki-45 Toryu"},
+    {"slot": "Bf110G2", "aircraft": "Ki-46 Dinah"},
+    {"slot": "He111H6", "aircraft": "Beaufort"},
+    {"slot": "IL2M42", "aircraft": "SBD-3 Dauntless"},
+    {"slot": "IL2M43", "aircraft": "CAC Wirraway"},
+    {"slot": "IL2m44", "aircraft": "TBF Avenger"},
+    {"slot": "Ju87D3", "aircraft": "D3A1 Val"},
+    {"slot": "ju88a4", "aircraft": "G4M1 Betty"},
+    {"slot": "Ju523mg4e", "aircraft": "L2D Tabby"},
+    {"slot": "La5s8", "aircraft": "Ki-43 Oscar (1946 host)"},
+    {"slot": "Bf109F2", "aircraft": "Ki-43 Oscar (WT 27 host)"},
+    {"slot": "MC202s8", "aircraft": "Ki-61 Tony (1946 host)"},
+    {"slot": "Bf109F4", "aircraft": "Ki-61 Tony (WT 27 host)"},
+    {"slot": "MosquitoFBMkVIs2", "aircraft": "Beaufighter"},
+    {"slot": "P47D22", "aircraft": "F4U-1D Corsair"},
+    {"slot": "P51B5", "aircraft": "F4F-4 Wildcat"},
+    {"slot": "Pe2s35", "aircraft": "B-17E"},
+    {"slot": "Pe2s87", "aircraft": "Ki-21 Sally"}
+  ]
+}
