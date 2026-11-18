@@ -12,6 +12,46 @@ LOOK_BY_TEXT = {v: k for k, v in sc.LOOKS.items()}
 COCKPIT_BY_TEXT = {v: k for k, v in sc.COCKPITS.items()}
 COLUMNS = 3
 
+# UI only: the JH launcher's look - campaign paper colours, the PWCG button (art/button.png), the logo's black plate for
+# Apply (art/plate.png), bold serif lettering
+PAPER, PAPER_DK, INK, FAINT, RED = "#e6dcc2", "#d8cba9", "#24180c", "#5a4630", "#8a1c10"
+
+
+def art_dir():
+    for d in (Path(__file__).resolve().parent, Path(getattr(sys, "_MEIPASS", "."))):
+        if (d / "art" / "button.png").is_file():
+            return d / "art"
+    return None
+
+
+def pwcg_style(root):
+    st = ttk.Style(root)
+    st.theme_use("clam")
+    root.configure(bg=PAPER)
+    base = ("Georgia", 10, "bold")
+    st.configure(".", background=PAPER, foreground=INK, font=base, fieldbackground="#efe6cf")
+    st.configure("TFrame", background=PAPER)
+    st.configure("TLabel", background=PAPER, foreground=INK)
+    st.configure("TEntry", fieldbackground="#efe6cf", foreground=INK, bordercolor="#a89670", lightcolor="#a89670",
+                 darkcolor="#a89670")
+    st.configure("TCombobox", fieldbackground="#efe6cf", foreground=INK, arrowcolor=INK, bordercolor="#a89670")
+    st.map("TCombobox", fieldbackground=[("readonly", "#efe6cf"), ("disabled", PAPER_DK)])
+    st.configure("Horizontal.TProgressbar", background="#2f5a22", troughcolor=PAPER_DK, bordercolor="#a89670")
+    d = art_dir()
+    if not d:
+        return
+    root._jh_imgs = imgs = {k: tk.PhotoImage(file=str(d / f"{k}.png")) for k in ("button", "plate")}
+    st.element_create("Pwcg.button", "image", imgs["button"], border=(14, 6), sticky="nsew")
+    st.layout("TButton", [("Pwcg.button", {"sticky": "nsew", "children": [
+        ("Button.padding", {"sticky": "nsew", "children": [("Button.label", {"sticky": "nsew"})]})]})])
+    st.configure("TButton", padding=(14, 6), foreground=INK, font=base, background=PAPER)
+    st.map("TButton", foreground=[("disabled", "#8c8070"), ("active", RED)])
+    st.element_create("Plate.button", "image", imgs["plate"], border=(17, 8), sticky="nsew")
+    st.layout("Plate.TButton", [("Plate.button", {"sticky": "nsew", "children": [
+        ("Button.padding", {"sticky": "nsew", "children": [("Button.label", {"sticky": "nsew"})]})]})])
+    st.configure("Plate.TButton", padding=(26, 8), foreground="#f3ece0", font=("Georgia", 12, "bold"), background=PAPER)
+    st.map("Plate.TButton", foreground=[("disabled", "#6e655a"), ("active", "#ffb060")])
+
 
 class Card:
     def __init__(self, app, parent, slot, aircraft):
@@ -20,11 +60,11 @@ class Card:
         self.light = tk.Canvas(self.frame, width=18, height=18, highlightthickness=0)
         self.dot = self.light.create_oval(2, 2, 16, 16, fill=LIGHT[sc.GREY], outline="#606060")
         self.light.grid(row=0, column=0, rowspan=2, sticky="n", padx=(0, 6))
-        ttk.Label(self.frame, text=f"{slot}  ->  {aircraft}", font=("Segoe UI", 10, "bold")).grid(
+        ttk.Label(self.frame, text=f"{slot}  ->  {aircraft}", font=("Georgia", 11, "bold")).grid(
             row=0, column=1, columnspan=2, sticky="w")
-        self.source = ttk.Label(self.frame, text="", foreground="#404040")
+        self.source = ttk.Label(self.frame, text="", foreground=FAINT)
         self.source.grid(row=1, column=1, columnspan=2, sticky="w")
-        self.status = ttk.Label(self.frame, text="", foreground="#606060")
+        self.status = ttk.Label(self.frame, text="", foreground=FAINT)
         self.status.grid(row=2, column=1, columnspan=2, sticky="w")
         row = ttk.Frame(self.frame)
         row.grid(row=3, column=1, columnspan=2, sticky="w", pady=(4, 0))
@@ -105,7 +145,7 @@ class App:
             ttk.Button(top, text="Browse...", command=lambda v=var: self.browse(v)).grid(row=r, column=2, padx=4)
             if extra:
                 ttk.Button(top, text=extra, command=self.detect).grid(row=r, column=3)
-        ttk.Label(top, text="Empty source field = default folder in MODS.", foreground="#606060").grid(
+        ttk.Label(top, text="Empty source field = default folder in MODS.", foreground=FAINT).grid(
             row=4, column=1, sticky="w")
         m = ttk.Frame(top)
         m.grid(row=4, column=2, columnspan=2, sticky="e")
@@ -133,7 +173,7 @@ class App:
 
         bottom = ttk.Frame(root, padding=8)
         bottom.pack(fill="x")
-        self.apply_btn = ttk.Button(bottom, text="Apply", command=self.apply)
+        self.apply_btn = ttk.Button(bottom, text="APPLY", command=self.apply, style="Plate.TButton")
         self.apply_btn.pack(side="right")
         self.rollback_btn = ttk.Button(bottom, text="Roll back", command=self.rollback)
         self.rollback_btn.pack(side="right", padx=6)
@@ -303,6 +343,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     dpi_aware()
     root = tk.Tk()
+    pwcg_style(root)
     App(root, args.settings)
     if args.preview:
         def grab():

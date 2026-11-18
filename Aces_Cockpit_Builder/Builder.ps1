@@ -112,6 +112,40 @@ $build.Add_Click({
     } catch { [Windows.Forms.MessageBox]::Show($_.Exception.Message,'Cannot start build','OK','Warning') | Out-Null }
 })
 $form.Add_FormClosing({ if ($script:process -and !$script:process.HasExited) { $_.Cancel = $true; [Windows.Forms.MessageBox]::Show('The build is still running. Keep this window open until it finishes.','Build in progress') | Out-Null } })
+# UI only: the JH launcher's look - paper sheet (Pingu's PWCG campaign paper), PWCG buttons, the logo's black plate
+# for the main action, bold serif lettering. No build logic changes.
+$ink = [Drawing.Color]::FromArgb(36,24,12); $faint = [Drawing.Color]::FromArgb(74,58,38)
+$paperPath = Join-Path $root 'art\paper.jpg'
+if (Test-Path -LiteralPath $paperPath) { $form.BackgroundImage = [Drawing.Image]::FromFile($paperPath); $form.BackgroundImageLayout = 'Stretch' }
+$form.ForeColor = $ink
+$form.Font = New-Object Drawing.Font('Georgia',10,[Drawing.FontStyle]::Bold)
+$btnImg = if (Test-Path -LiteralPath (Join-Path $root 'art\button.png')) { [Drawing.Image]::FromFile((Join-Path $root 'art\button.png')) }
+$plateImg = if (Test-Path -LiteralPath (Join-Path $root 'art\plate.png')) { [Drawing.Image]::FromFile((Join-Path $root 'art\plate.png')) }
+function Skin-Button($b, $img, [Drawing.Color]$fore, [single]$size) {
+    if (-not $img) { return }
+    $b.BackgroundImage = $img; $b.BackgroundImageLayout = 'Stretch'
+    $b.FlatStyle = 'Flat'; $b.FlatAppearance.BorderSize = 0
+    $b.BackColor = [Drawing.Color]::Transparent
+    $b.FlatAppearance.MouseOverBackColor = [Drawing.Color]::Transparent
+    $b.FlatAppearance.MouseDownBackColor = [Drawing.Color]::Transparent
+    $b.ForeColor = $fore; $b.Font = New-Object Drawing.Font('Georgia',$size,[Drawing.FontStyle]::Bold)
+}
+foreach ($control in @($form.Controls)) {
+    if ($control -is [Windows.Forms.Label] -or $control -is [Windows.Forms.CheckBox]) {
+        $control.BackColor = [Drawing.Color]::Transparent
+        $control.ForeColor = if ($control.Height -eq 23) { $faint } else { $ink }
+    } elseif ($control -is [Windows.Forms.Button]) {
+        Skin-Button $control $btnImg $ink 10
+    } elseif ($control -is [Windows.Forms.TextBox] -and -not $control.Multiline) {
+        $control.BackColor = [Drawing.Color]::FromArgb(234,223,196); $control.ForeColor = $ink; $control.BorderStyle = 'FixedSingle'
+        $control.Font = New-Object Drawing.Font('Courier New',10,[Drawing.FontStyle]::Bold)
+    }
+}
+$title.Font = New-Object Drawing.Font('Georgia',18,[Drawing.FontStyle]::Bold)
+$build.SetBounds($build.Left,($build.Top - 4),190,46)
+Skin-Button $build $plateImg ([Drawing.Color]::FromArgb(243,236,224)) 13
+$open.Left = $build.Right + 16
+$status.Left = $open.Right + 14; $status.Width = $form.ClientSize.Width - $status.Left - 24
 # UI only: the mod's own loading-screen art as a banner; every control moves down by its height
 $bannerPath = Join-Path $root 'art\banner.png'
 if (Test-Path -LiteralPath $bannerPath) {

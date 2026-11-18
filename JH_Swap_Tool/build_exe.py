@@ -12,7 +12,7 @@ WORK = HERE / "build"
 def main():
     subprocess.run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--onefile", "--windowed",
                     "--exclude-module", "PIL", "--name", "JH_Swap_Tool", "--distpath", str(DIST), "--workpath", str(WORK),
-                    "--specpath", str(WORK), "--add-data", f"{HERE / 'slots.json'};.",
+                    "--specpath", str(WORK), "--add-data", f"{HERE / 'slots.json'};.", "--add-data", f"{HERE / 'art'};art",
                     str(HERE / "jh_swap_tool.py")], check=True, cwd=HERE)
     exe = DIST / "JH_Swap_Tool.exe"
     zpath = DIST / "JH_Swap_Tool.zip"
