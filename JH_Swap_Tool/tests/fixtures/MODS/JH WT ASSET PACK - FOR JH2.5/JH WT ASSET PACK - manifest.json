@@ -1,0 +1,34 @@
+{
+ "wt_version_install": "2.41.0.1",
+ "recipe_version": 1,
+ "files": {
+  "data/graphics/planes/A6M5/A6M5.mgm": {
+   "sha256": "a65b02a13b0c149a84e005988c46f65a11caa3e175e4a067db77a11556b19361",
+   "size": 18
+  },
+  "data/graphics/planes/Fw190A3/Fw190A3.mgm": {
+   "sha256": "f7fa98e4ea486571868cb19340977e7cbf625b210c767f486add30e799d53e09",
+   "size": 21
+  },
+  "data/graphics/planes/P47D22/P47D22.mgm": {
+   "sha256": "22993685631de02bdea2b4ea463dcf2b8b3521ba9bac08b85d8c6abf87cc85be",
+   "size": 20
+  },
+  "data/graphics/Skins/A6M5/wt_skin.dds": {
+   "sha256": "5b440e4d71565c24dcca3781520a7fe88ac291cd44d6a2e232265c133b435e17",
+   "size": 14
+  },
+  "data/graphics/Skins/Fw190A3/wt_skin.dds": {
+   "sha256": "9389ff908a55bedd9be31a48c7fd66545703a246ac6bbfa971f599ecde776641",
+   "size": 17
+  },
+  "data/graphics/Skins/P47D22/wt_skin.dds": {
+   "sha256": "734642e0ae557f79ef311f3173eb062a07d72886828bbdd3bcb4606b9ab95fc3",
+   "size": 16
+  },
+  "data/graphics/textures/wt_shared.dds": {
+   "sha256": "bd424b06ee0fe1f844cd47bd29cd6267a72ac632af45a14f2d2e8f2e8e920f88",
+   "size": 11
+  }
+ }
+}

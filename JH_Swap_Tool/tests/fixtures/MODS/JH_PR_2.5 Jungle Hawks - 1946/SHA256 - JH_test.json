@@ -1,0 +1,475 @@
+{
+ "release": "JH_test",
+ "files": [
+  {
+   "file": "data/graphics/planes/A6M5/A6M5-C.mgm",
+   "bytes": 36,
+   "sha256": "9bb39fdc2a97681d9e9016f92bd369ccbfd00bbdcffb953b777a6482d4854b34"
+  },
+  {
+   "file": "data/graphics/planes/A6M5/A6M5.mgm",
+   "bytes": 37,
+   "sha256": "aa2d6188659bc6b29ab14de276d43a50a6c788b18e121c782e75b3ed98e53f29"
+  },
+  {
+   "file": "data/graphics/planes/Bf109F2/Bf109F2-C.mgm",
+   "bytes": 39,
+   "sha256": "52a42fe9ee433f0a1f967e6b90fc7028a7f7fb61eb34800bd58b496564ed8854"
+  },
+  {
+   "file": "data/graphics/planes/Bf109F2/Bf109F2.mgm",
+   "bytes": 40,
+   "sha256": "e752384d38653ae2c171641ce13f2c2ca3709d1ca629cff10bb55282c0d36761"
+  },
+  {
+   "file": "data/graphics/planes/Bf109F4/Bf109F4-C.mgm",
+   "bytes": 38,
+   "sha256": "efbc10eb2c13caca5fd0b9f055a4b39cf99b1b7293b9af39091d534480bb7cf7"
+  },
+  {
+   "file": "data/graphics/planes/Bf109F4/Bf109F4.mgm",
+   "bytes": 39,
+   "sha256": "f30463bc7e2dbbb9ed065ca4d1751082b1c25b280031f43074fb88011bba0e03"
+  },
+  {
+   "file": "data/graphics/planes/Bf110E2/Bf110E2-C.mgm",
+   "bytes": 26,
+   "sha256": "ae8449eb89dab65d03befcc3d2f0e7e5ef8448c838992e07da8121653c1976d2"
+  },
+  {
+   "file": "data/graphics/planes/Bf110E2/Bf110E2.mgm",
+   "bytes": 27,
+   "sha256": "c8443319fc16cc9df0cdf401ff5ee1c89aa7135198b8bbba6cce924d2c9960bb"
+  },
+  {
+   "file": "data/graphics/planes/Bf110G2/Bf110G2-C.mgm",
+   "bytes": 26,
+   "sha256": "7e42f7c1fb1baa176ad7cb9f322c0ea0c4b44d590943d6308dcc8967afc48d2d"
+  },
+  {
+   "file": "data/graphics/planes/Bf110G2/Bf110G2.mgm",
+   "bytes": 27,
+   "sha256": "5010b9c26c1960d2c67f27d8c6dd4f86759f9221859491e3b8c0c5d5a0d021ca"
+  },
+  {
+   "file": "data/graphics/planes/Fw190A3/Fw190A3-C.mgm",
+   "bytes": 36,
+   "sha256": "69b1bf4ab442a79fcaa49adfdb36685769be6e74d7e1afb04bafd23424989255"
+  },
+  {
+   "file": "data/graphics/planes/Fw190A3/Fw190A3.mgm",
+   "bytes": 37,
+   "sha256": "719508c87b6a21276becc580d4f8aed1e751178dbae23e39daad9a3020a06f32"
+  },
+  {
+   "file": "data/graphics/planes/Fw190A5/Fw190A5-C.mgm",
+   "bytes": 24,
+   "sha256": "61ded8185bd7b989c867a295fb14ff366ef720799e75047e2128d9afc460cb42"
+  },
+  {
+   "file": "data/graphics/planes/Fw190A5/Fw190A5.mgm",
+   "bytes": 25,
+   "sha256": "d7a65326ab791350bdfd0b025438dc2b20a4b8e7c199c072216a94140452c035"
+  },
+  {
+   "file": "data/graphics/planes/He111H6/He111H6-C.mgm",
+   "bytes": 23,
+   "sha256": "d26ebf18c7d36bce658a5a625fde7a7e72ca43da8343f0e0bca340d0431b59fc"
+  },
+  {
+   "file": "data/graphics/planes/He111H6/He111H6.mgm",
+   "bytes": 24,
+   "sha256": "a97ab698a5909cac291777a505cd3eefa0385ca9ea4be331d8a72acac8ee1766"
+  },
+  {
+   "file": "data/graphics/planes/IL2M42/IL2M42-C.mgm",
+   "bytes": 30,
+   "sha256": "d7f260e3f6bce0a2f885eca18177cd89d56520f2dd286ddca8d31231ee0c61c5"
+  },
+  {
+   "file": "data/graphics/planes/IL2M42/IL2M42.mgm",
+   "bytes": 31,
+   "sha256": "fbe04ea6211a6764f772d29f72e6d0c3772fd811eaf744ddae59c52b65bf2fff"
+  },
+  {
+   "file": "data/graphics/planes/IL2M43/IL2M43-C.mgm",
+   "bytes": 27,
+   "sha256": "07dd0f96bd19ee56ae423b007257f05973c31bad71d6b52b2b296246aaad5078"
+  },
+  {
+   "file": "data/graphics/planes/IL2M43/IL2M43.mgm",
+   "bytes": 28,
+   "sha256": "71b72a8d7ba83fc538692ae2f628b7321888184255850974af3c3ae11974b79e"
+  },
+  {
+   "file": "data/graphics/planes/IL2m44/IL2m44-C.mgm",
+   "bytes": 26,
+   "sha256": "6a8f930dba90f693b6fda8691dd8a90a0b7b3e4bf49407fbbe0460e39e114e91"
+  },
+  {
+   "file": "data/graphics/planes/IL2m44/IL2m44.mgm",
+   "bytes": 27,
+   "sha256": "89750037a053c5972936649c37f1de06e954f97150660d47a3e07a6c1c26e226"
+  },
+  {
+   "file": "data/graphics/planes/Ju523mg4e/Ju523mg4e-C.mgm",
+   "bytes": 24,
+   "sha256": "95db3b81ddf0afd213145e7f877c4fbdee74f347afab848ca142d4f349586844"
+  },
+  {
+   "file": "data/graphics/planes/Ju523mg4e/Ju523mg4e.mgm",
+   "bytes": 25,
+   "sha256": "c76a0ea96d05fd0aa66c1b9a2fec9bfd254273579d87d9e9c6a292b593edb348"
+  },
+  {
+   "file": "data/graphics/planes/Ju87D3/Ju87D3-C.mgm",
+   "bytes": 23,
+   "sha256": "a0fe1506f646e1c7fcbfed61542e36734971b19a838e8defae1012275f97dc51"
+  },
+  {
+   "file": "data/graphics/planes/Ju87D3/Ju87D3.mgm",
+   "bytes": 24,
+   "sha256": "d929c1d3b9f0adb38090e31a8c0f6caec154b475f15d90211acd1f46140fabf3"
+  },
+  {
+   "file": "data/graphics/planes/ju88a4/ju88a4-C.mgm",
+   "bytes": 25,
+   "sha256": "b04ece041a945e023c358eed5b0e6713af3011dbbcbebe702f8ee01b9b3805ac"
+  },
+  {
+   "file": "data/graphics/planes/ju88a4/ju88a4.mgm",
+   "bytes": 26,
+   "sha256": "e325a389bdccd337ac1be51fc9f1d820c9c3a0cb437ef1c55941cd8b75798adc"
+  },
+  {
+   "file": "data/graphics/planes/La5s8/La5s8-C.mgm",
+   "bytes": 38,
+   "sha256": "2c564e446bd6b14f03bc3a8d2e5127ec6dc827e99f859ff5fe02097dc0af9560"
+  },
+  {
+   "file": "data/graphics/planes/La5s8/La5s8.mgm",
+   "bytes": 39,
+   "sha256": "e48e7a0b42e77ac0887824d3f281437072ef6534cc78a617a15824e802de66c3"
+  },
+  {
+   "file": "data/graphics/planes/LaGG3s29/LaGG3s29-C.mgm",
+   "bytes": 37,
+   "sha256": "00f70222a58db3634a1f120078464e336def2a23fca16c2c7a6269711cec1d02"
+  },
+  {
+   "file": "data/graphics/planes/LaGG3s29/LaGG3s29.mgm",
+   "bytes": 38,
+   "sha256": "20381f44772e109d5e91eac08440629a6f041c0da7427b4937f7d9a6c3e7a077"
+  },
+  {
+   "file": "data/graphics/planes/MC202s8/MC202s8-C.mgm",
+   "bytes": 37,
+   "sha256": "1d16c81a34006bbda1075dfbc595617c4ef12fc61c11b11dfc581be9736727c2"
+  },
+  {
+   "file": "data/graphics/planes/MC202s8/MC202s8.mgm",
+   "bytes": 38,
+   "sha256": "360ff28736bd943c156e4344836b86bfd7ce0074c0727278ac749c7984a65893"
+  },
+  {
+   "file": "data/graphics/planes/MosquitoFBMkVIs2/MosquitoFBMkVIs2-C.mgm",
+   "bytes": 26,
+   "sha256": "18548732fa67c84b12a8d51a4aab9f5a41ed0fa75e444eed34c6cf98f667fcb4"
+  },
+  {
+   "file": "data/graphics/planes/MosquitoFBMkVIs2/MosquitoFBMkVIs2.mgm",
+   "bytes": 27,
+   "sha256": "4154e8fa34c4898208e270c609edf175e3c23a08cccb7b53919ef03a9776409b"
+  },
+  {
+   "file": "data/graphics/planes/P47D22/P47D22-C.mgm",
+   "bytes": 29,
+   "sha256": "596ca28332f6afb6b28d9c2fb4c5fec7e501bd14859ac3c06c2197071a074a29"
+  },
+  {
+   "file": "data/graphics/planes/P47D22/P47D22.mgm",
+   "bytes": 30,
+   "sha256": "42b369afca03872db8afe3aa465e4f6e0c7b505db2961070c3bb2014a9ddf526"
+  },
+  {
+   "file": "data/graphics/planes/P51B5/P51B5-C.mgm",
+   "bytes": 28,
+   "sha256": "e2c0c84af107482ef2dd8342dea81ee0ea64acb09b59d2b4d57509a33fdb3c29"
+  },
+  {
+   "file": "data/graphics/planes/P51B5/P51B5.mgm",
+   "bytes": 29,
+   "sha256": "cc3a8628b9d23dcb51b0bd8f6f437d8a095494e012d869ba0b17172bd774b6bf"
+  },
+  {
+   "file": "data/graphics/planes/Pe2s35/Pe2s35-C.mgm",
+   "bytes": 20,
+   "sha256": "8f33c43c07de2efdedfedcc1986770f8f8021acca75211de81d111215375a648"
+  },
+  {
+   "file": "data/graphics/planes/Pe2s35/Pe2s35.mgm",
+   "bytes": 21,
+   "sha256": "100c51d76e13eeb4fe82447497283e685b949b40af087f51f5920457567a154d"
+  },
+  {
+   "file": "data/graphics/planes/Pe2s87/Pe2s87-C.mgm",
+   "bytes": 26,
+   "sha256": "b67d5c3cedd050833be4941f5c96e18c2bfae88dcd343675040b49b11b0fb874"
+  },
+  {
+   "file": "data/graphics/planes/Pe2s87/Pe2s87.mgm",
+   "bytes": 27,
+   "sha256": "873fae4bea01710e42bb1addc095552154c72f034d35121219d965978b3b4638"
+  },
+  {
+   "file": "data/graphics/planes/Yak1s69/Yak1s69-C.mgm",
+   "bytes": 37,
+   "sha256": "c8b616b43522b9261b6ca7a37d8c1fe2eb0945fa2ef5e28a801fa07978e50b6b"
+  },
+  {
+   "file": "data/graphics/planes/Yak1s69/Yak1s69.mgm",
+   "bytes": 38,
+   "sha256": "4ace7038b16cc9666cf19166762739c8d828bf0ceab21c6a77124083fa236d12"
+  },
+  {
+   "file": "data/graphics/Skins/A6M5/skin1.dds",
+   "bytes": 33,
+   "sha256": "5d952003ac0d517ad0ffaa1ade06119e3570e3be0aeda08c13b71acfb5c70aa5"
+  },
+  {
+   "file": "data/graphics/Skins/Bf109F2/skin1.dds",
+   "bytes": 36,
+   "sha256": "9808aa522dc022edf22cc023396d3448e3a49e3c5cda6ba7b1756705e1e83b0c"
+  },
+  {
+   "file": "data/graphics/Skins/Bf109F4/skin1.dds",
+   "bytes": 35,
+   "sha256": "f070f4daf863ca190ab3e14abccec1b472c9e3cf3d3fbd9bf77ab8b9d78d6c26"
+  },
+  {
+   "file": "data/graphics/Skins/Bf110E2/skin1.dds",
+   "bytes": 23,
+   "sha256": "859b2b66d747e0beefd5c055eae15e58add41252460905d193c0c442f507b4fe"
+  },
+  {
+   "file": "data/graphics/Skins/Bf110G2/skin1.dds",
+   "bytes": 23,
+   "sha256": "f00f71434f16d8b4c172fd6f1dd84a362c802e60988bcc12722dc567ef1020c7"
+  },
+  {
+   "file": "data/graphics/Skins/Fw190A3/skin1.dds",
+   "bytes": 33,
+   "sha256": "74f0f3bdbdccacf1e36baeef5c984ed0b9be10566242238c50e78f39d435b1d0"
+  },
+  {
+   "file": "data/graphics/Skins/Fw190A5/skin1.dds",
+   "bytes": 21,
+   "sha256": "804ef9ac50f6e649c2a58a66d0b1911296a3d314466144bfd66a9ecdacfd5dfd"
+  },
+  {
+   "file": "data/graphics/Skins/He111H6/skin1.dds",
+   "bytes": 20,
+   "sha256": "811bf3e136dbade5205b4e038a8269d8aea9eda4f01f6b8d3cd2e3e029cdbcb2"
+  },
+  {
+   "file": "data/graphics/Skins/IL2M42/skin1.dds",
+   "bytes": 27,
+   "sha256": "49cf24271d2fd181541eda3c3ab01e19dad7d604da3b8c73a4c335469ea3ccda"
+  },
+  {
+   "file": "data/graphics/Skins/IL2M43/skin1.dds",
+   "bytes": 24,
+   "sha256": "ad624347a05833e2fdaa48e834390420a810b483b175b3e35211d2cb309a31dd"
+  },
+  {
+   "file": "data/graphics/Skins/IL2m44/skin1.dds",
+   "bytes": 23,
+   "sha256": "8790e8a11fdbe5712e0a90085e6c515ef7aab5eecea65fe76612e30a2937ff0c"
+  },
+  {
+   "file": "data/graphics/Skins/Ju523mg4e/skin1.dds",
+   "bytes": 21,
+   "sha256": "d0507b842271d51683675da8a6ac1a3bca703ba4d5b727e4bbb418c65e884480"
+  },
+  {
+   "file": "data/graphics/Skins/Ju87D3/skin1.dds",
+   "bytes": 20,
+   "sha256": "c1b089e970d733e45bc27c3ab01fb50e7c6708213c4f9865a454ec73cff66467"
+  },
+  {
+   "file": "data/graphics/Skins/ju88a4/skin1.dds",
+   "bytes": 22,
+   "sha256": "927fff0ab473d47551db2fdee5824d103d29d11b092f6c31280921ae8654ef81"
+  },
+  {
+   "file": "data/graphics/Skins/La5s8/skin1.dds",
+   "bytes": 35,
+   "sha256": "a6e4e845631e83f52b6d81bf241cdf996de4cc6813c60b41a904960fdbf3d4c2"
+  },
+  {
+   "file": "data/graphics/Skins/LaGG3s29/skin1.dds",
+   "bytes": 34,
+   "sha256": "7a1db67730734d50328d334fc1555aeb15ac993426a76b7144b5c714cab9aa0f"
+  },
+  {
+   "file": "data/graphics/Skins/MC202s8/skin1.dds",
+   "bytes": 34,
+   "sha256": "521debab1e2810a132400ab809fcbccca75dad6c2d6e4c9cf360a9bf9fce4f95"
+  },
+  {
+   "file": "data/graphics/Skins/MosquitoFBMkVIs2/skin1.dds",
+   "bytes": 23,
+   "sha256": "dd8c0a412f54f6712e78b8e464bc2d345df59a5893b431bca3012f8b95de9900"
+  },
+  {
+   "file": "data/graphics/Skins/P47D22/skin1.dds",
+   "bytes": 26,
+   "sha256": "23343e51cc41761b527073b2d292a23ba37fcc80746f7bc3ec8b7b3f6d0d190b"
+  },
+  {
+   "file": "data/graphics/Skins/P51B5/skin1.dds",
+   "bytes": 25,
+   "sha256": "13b8193dc5af56d8e1889fb61c8267bb39327d41af55da619ac8ec29495ee56f"
+  },
+  {
+   "file": "data/graphics/Skins/Pe2s35/skin1.dds",
+   "bytes": 17,
+   "sha256": "95d1ccbe3229ab62e877be63128757cf080d209f14e09144651d579c66244198"
+  },
+  {
+   "file": "data/graphics/Skins/Pe2s87/skin1.dds",
+   "bytes": 23,
+   "sha256": "c8b3fc87631071a25084c83da9c55858cd6c2def6b5f9d1417d2c10c7f26d5b7"
+  },
+  {
+   "file": "data/graphics/Skins/Yak1s69/skin1.dds",
+   "bytes": 34,
+   "sha256": "8a08c17e039d3c1de4fdf50956e86dc400099b44484b2f4121342eb6d411a670"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/a6m5.txt",
+   "bytes": 32,
+   "sha256": "32f5adf503c9bf468c52b2a5110caf67f9913d8296fb5203303ada24a589473c"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/bf109f2.txt",
+   "bytes": 35,
+   "sha256": "dc1ad34181a75b6f321f42fd9d90a4a539a127ca99dae74c9264fb935efbaabc"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/bf109f4.txt",
+   "bytes": 34,
+   "sha256": "dae4026df60dbe31cc70ea20436535ff7bf75782c53ef0626f0fca611c89b977"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/bf110e2.txt",
+   "bytes": 22,
+   "sha256": "a9cf37eedcbb01e9c42fd2f4a8a8d25880a9f5269b9dbbf47f297d1ac37b1c12"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/bf110g2.txt",
+   "bytes": 22,
+   "sha256": "cbc601887759e67794898ad1ee611dbea1ace8beb56d9efec7e5a1280c126207"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/fw190a3.txt",
+   "bytes": 32,
+   "sha256": "9626f81886f8fb89e442bb9dbd8587b1e4ee49710d7e0f2a36e52652a2e7460a"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/fw190a5.txt",
+   "bytes": 20,
+   "sha256": "fb9d41dc7a7ba02f0e1952e052d29d065e2e5a6b5359880b53ddea29a523fd4a"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/he111h6.txt",
+   "bytes": 19,
+   "sha256": "acd90a6cf6e331ac839de66f5c70c9ffc0efab7daf9776ac777f6588c9994519"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/il2m42.txt",
+   "bytes": 26,
+   "sha256": "f3d502fe6089129c07cc9fdec2fec51d503974104949e16718d8937c31133bb0"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/il2m43.txt",
+   "bytes": 23,
+   "sha256": "5f91186c90427a041e817e194e5332623dc2ed37de9b27960802b331856eca0e"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/il2m44.txt",
+   "bytes": 22,
+   "sha256": "b299d29f1ed5574c97977a1a892e2b971a5725accd377546f47cc8b615d39c86"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/ju523mg4e.txt",
+   "bytes": 20,
+   "sha256": "0b499ae084ecc4c61e87c371c4b97c6125c35d1e5a2051bbc95ead2110908961"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/ju87d3.txt",
+   "bytes": 19,
+   "sha256": "f30c3d4548dfdcb18b28afc119d2af6b35bf3db7443090e050a834b7755ef474"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/ju88a4.txt",
+   "bytes": 21,
+   "sha256": "7d21a79149eeed5ad1c4a6c5e5624235df935c32899be26ec9f94cede7ebd879"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/la5s8.txt",
+   "bytes": 34,
+   "sha256": "427af9b26a28a034b1d601a22020d9909b0e18715f4e3282521afab376d29c29"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/lagg3s29.txt",
+   "bytes": 33,
+   "sha256": "33baf125710835c7f09e13c224239828115e6311bcb4c0216f243ef288c5ee6e"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/mc202s8.txt",
+   "bytes": 33,
+   "sha256": "5b31416fa9e1ca3c0a568f0271924e2e0819d4a7c1f499c68bf11e1f6c9f1fd9"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/mosquitofbmkvis2.txt",
+   "bytes": 22,
+   "sha256": "410d35d21ace777d42fe8e6bee7d0b95ba1c9a92ffe534128b27471d62724b54"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/p47d22.txt",
+   "bytes": 25,
+   "sha256": "4703171d81e070b6b07b6eec190223e1f26385690e17ad113796189863114417"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/p51b5.txt",
+   "bytes": 24,
+   "sha256": "3717415fe2dc77c05c4896e90ac77ada765c2b374faadefed406fce081eb3e9e"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/pe2s35.txt",
+   "bytes": 16,
+   "sha256": "7f38b1a617a56661cc520faf7c544d3c6aee5c78989ca5dc037411f4fa98e51e"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/pe2s87.txt",
+   "bytes": 22,
+   "sha256": "5df026f72ed085379a4663821592852fa1b2889e1cad4a93ff5aa9a34dd3be70"
+  },
+  {
+   "file": "data/LuaScripts/WorldObjects/Planes/yak1s69.txt",
+   "bytes": 33,
+   "sha256": "a0dc9ad4791c025d5dd56f57d2f29ddcc38a68718e113b19dd0b6fc721ecfdb9"
+  },
+  {
+   "file": "data/scg/countries.cfg",
+   "bytes": 11,
+   "sha256": "74c4e2a2d205b161477b5b8a60d872e7d477cff47a8c7bdce03ceef62f93b5e2"
+  },
+  {
+   "file": "README - JH_test.txt",
+   "bytes": 13,
+   "sha256": "5b80b59a17adbe946b55de5f4ec68c422a8e9480891025195cc32158240b4ab9"
+  }
+ ]
+}
