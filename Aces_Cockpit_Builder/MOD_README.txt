@@ -20,8 +20,8 @@ Cockpits:
 Exterior meshes, flight models, weapons and systems come from the base. J2M2, SB2C and D4Y have no slot.
 
 Current state:
-- Canopy glass (TEST 4 fix): F4F, F4U and SBD canopy glass uses the uniform WT glass texture with the
-  vanilla P-51D CanopyGlass material constants (no ring/lensing pattern from WT constants).
+- Canopy glass: F4F, F4U and SBD canopy glass uses the glass of the selected base's own pit (texture, including
+  a pit-only glass texture, and CanopyGlass material constants).
 - For the WT base only. Never enable it over a 'JH_PR_2.5 Jungle Hawks - 1946' build: its plane scripts
   are WT base scripts.
 - Plane scripts are the selected base's scripts; only GunsightPosition changes. Enabling this folder over a
