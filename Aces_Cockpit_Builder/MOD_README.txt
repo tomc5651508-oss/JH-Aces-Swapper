@@ -22,6 +22,9 @@ Exterior meshes, flight models, weapons and systems come from the base. J2M2, SB
 Current state:
 - Canopy glass: F4F, F4U and SBD canopy glass uses the glass of the selected base's own pit (texture, including
   a pit-only glass texture, and CanopyGlass material constants).
+- Delta pack: only the Aces cockpit files. The plane scripts, pilot bots and -C.txt stay Jungle Hawks' own;
+  the Aces view lines (aces_gunsight_delta.json) are put into them by the JH launcher when it starts the game
+  with the Aces cockpits ticked.
 - For the WT base only. Never enable it over a 'JH_PR_2.5 Jungle Hawks - 1946' build: its plane scripts
   are WT base scripts.
 - Plane scripts are the selected base's scripts; only GunsightPosition changes. Enabling this folder over a

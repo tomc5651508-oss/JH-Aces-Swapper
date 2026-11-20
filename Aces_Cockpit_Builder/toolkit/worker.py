@@ -27,28 +27,26 @@ def preflight(cfg):
  if inside(out,il2) and out.parent!=il2/'MODS':raise ValueError('Inside IL-2, output must be a NEW direct child folder under MODS.')
  if inside(out,ROOT.parent):raise ValueError('Output must be separate from this builder folder.')
  if out.name.startswith('!'):raise ValueError('Do not use a JSGME backup/control folder as output.')
- expected=json.loads((ROOT/'baseline_compatibility.json').read_text())
- # Only rows of the slots in use (and the Type98 donor) are checked, so a base with moved slots needs no dead rows.
- used={x.lower() for x in list(PAIRS.values())+[SLOTS['type98_donor_slot']]}
- def row_slot(rel):
-  r=rel.replace('\\','/').split('/');n=r[-1].lower()
-  if 'graphics' in [q.lower() for q in r]:return r[-2].lower()
-  if n.endswith('.txt'):return n[:-4].split('_')[-1]
- # A slot whose plane script names a bot of another slot (re-host) lists that bot in slots.json; it is pinned too.
- bots={c['bot'].lower() for c in SLOTS['cockpits'] if c.get('bot')}
+ # No version gate: the build stops only when a file it needs is missing or unreadable. A base file that differs
+ # from the tested placement data (base_contract.py) is a log line; the QA/placement report shows the result.
+ import re,base_contract
+ need=[f"data/graphics/planes/{SLOTS['type98_donor_slot']}/{SLOTS['type98_donor_slot']}-C.mgm"]
  for c in SLOTS['cockpits']:
-  if c.get('bot'):
-   script=(base/f"data/LuaScripts/WorldObjects/planes/{c['slot']}.txt")
-   if not script.is_file() or c['bot'].lower().removeprefix('data/') not in script.read_text(encoding='latin1').lower():raise ValueError('Plane script of slot '+c['slot']+' does not name the bot '+c['bot']+' (slots.json).')
- expected={rel:w for rel,w in expected.items() if row_slot(rel) in used or rel.lower() in bots}
- missing=sorted(used-{row_slot(rel) for rel in expected})
- if missing:raise ValueError('No pinned base hashes for slot(s) '+', '.join(missing)+' in baseline_compatibility.json.')
- # A pinned hash passes at once; another version passes when its placement data matches placement_contract.json.
- import base_contract
- for rel,want in expected.items():
-  ok,note=base_contract.check(base,rel,want if isinstance(want,list) else [want])
-  if not ok:raise ValueError('This base does not fit the tested cockpit placement: '+note+'. Select a supported JH 2.5 WT base ('+SLOTS['base']['supported_text']+'), not the Aces overlay.')
-  if note:print('Base check: '+note,flush=True)
+  s=c['slot'];script=f"data/LuaScripts/WorldObjects/planes/{s}.txt";need+=[f"data/graphics/planes/{s}/{s}-C.mgm",script,f"data/graphics/planes/{s}/{s}-C.txt"]
+  try:text=(base/script).read_text(encoding='latin1')
+  except OSError:raise ValueError('The JH base is missing a file the builder needs: '+script)
+  blk=re.search(r'\[attach=0\](.*?)\[end\]',text,re.S|re.I);bot=blk and re.search(r'object\s*=\s*"([^"]+)"',blk[1],re.I)
+  if not bot:raise ValueError('The plane script '+script+' has no pilot bot ([attach=0] object) - the builder needs it for the eye position.')
+  need.append('data/'+bot[1].replace(chr(92),'/'))
+ for rel in dict.fromkeys(need):
+  try:(base/rel).read_bytes()
+  except OSError:raise ValueError('The JH base is missing a file the builder needs (or it cannot be read): '+rel)
+ try:
+  pins=json.loads((ROOT/'baseline_compatibility.json').read_text())
+  for rel in dict.fromkeys(need):
+   want=pins.get(rel);ok,note=base_contract.check(base,rel,(want if isinstance(want,list) else [want]) if want else [])
+   if note:print('Base note: '+note,flush=True)
+ except Exception as e:print('Base note: placement comparison skipped ('+str(e)[:160]+')',flush=True)
  return aot,il2,base,out
 def clean_scratch(work,package):
  # Delete the extracted Gaijin source material and the scratch copy of the package; keep reports.
@@ -106,10 +104,12 @@ def main():
  assert all(p.stat().st_size<=LIMIT for p in PACKAGE.rglob('*.dds'))
  readme=(ROOT.parent/'MOD_README.txt').read_text(encoding='utf-8');(PACKAGE/'README.txt').write_text(readme,encoding='utf-8')
  shutil.copyfile(ROOT.parent/'NOTICE.txt',PACKAGE/'NOTICE.txt')
- # Base files the pack was derived from or replaces: a later JH update shows up as a hash change (pack needs a rebuild).
+ # Delta over the base: no base file copies; the view lines of scripts / bots / -C.txt go to aces_gunsight_delta.json.
+ from make_delta import make_delta
  derived={Path(p).resolve().relative_to(base).as_posix() for p in deps if inside(Path(p).resolve(),base)}
  derived|={p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob('*') if p.is_file() and (base/p.relative_to(PACKAGE)).is_file()}
- (PACKAGE/'aces_pack_base.json').write_text(json.dumps({'about':'Base files this Aces pack was built from or replaces. Any sha256 that differs from the live base = rebuild the pack. Plane scripts = the base script with only the GunsightPosition line changed.','base_folder':base.name,'base_label':cfg.get('base_label'),'built':datetime.datetime.now().isoformat(timespec='seconds'),'base_files':{r:sha(base/r) for r in sorted(derived)}},indent=2),encoding='utf-8')
+ d=make_delta(PACKAGE,base,cfg.get('base_label'),derived)
+ print(f"Delta: {d['delta_lines']} view line(s) in aces_gunsight_delta.json, {len(d['dropped'])} base-derived file(s) not shipped"+(f", kept whole: {d['kept_whole_text']}" if d['kept_whole_text'] else ''),flush=True)
  manifest=[{'file':p.relative_to(PACKAGE).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(PACKAGE.rglob('*')) if p.is_file() and p.name not in ('PACKAGE_SHA256.json','BUILD_RESULT.json')]
  (PACKAGE/'PACKAGE_SHA256.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
  # Only publish after the entire build validates; an existing destination is refused.
