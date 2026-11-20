@@ -43,7 +43,7 @@ def _line(text, key, section):
             if inside and s == '[end]':
                 return None
         if inside and re.match(rf'\s*{key}\s*=', ln, re.I):
-            return i, ln.strip()
+            return i, ln.rstrip('\r\n')
     return None
 
 
@@ -79,7 +79,7 @@ def make_delta(package, base, base_label=None, derived=()):
         'format': 1,
         'about': 'Aces cockpit view lines. For each path: in the live JH base file, find the first line whose '
                  'text starts with "<key>" then "=" (inside [<section>] ... [end] when section is set) and replace '
-                 'that line, up to but not including its line ending, with "line". Every other byte stays as in '
+                 'that whole line, up to but not including its line ending, with "line" (leading whitespace included). Every other byte stays as in '
                  'the base. Without these lines the Aces cockpits are seen from the JH eye.',
         'base_folder': base.name, 'files': delta}, indent=2) + '\n', encoding='utf-8')
     rels = set(derived) | set(delta)
