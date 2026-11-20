@@ -43,10 +43,12 @@ def preflight(cfg):
  expected={rel:w for rel,w in expected.items() if row_slot(rel) in used or rel.lower() in bots}
  missing=sorted(used-{row_slot(rel) for rel in expected})
  if missing:raise ValueError('No pinned base hashes for slot(s) '+', '.join(missing)+' in baseline_compatibility.json.')
+ # A pinned hash passes at once; another version passes when its placement data matches placement_contract.json.
+ import base_contract
  for rel,want in expected.items():
-  p=base/rel
-  choices=want if isinstance(want,list) else [want]
-  if not p.is_file() or sha(p) not in choices:raise ValueError('This base differs from the tested JH 2.5 WT native donor: '+rel+'. Select a supported JH 2.5 WT base ('+SLOTS['base']['supported_text']+'), not the Aces overlay.')
+  ok,note=base_contract.check(base,rel,want if isinstance(want,list) else [want])
+  if not ok:raise ValueError('This base does not fit the tested cockpit placement: '+note+'. Select a supported JH 2.5 WT base ('+SLOTS['base']['supported_text']+'), not the Aces overlay.')
+  if note:print('Base check: '+note,flush=True)
  return aot,il2,base,out
 def clean_scratch(work,package):
  # Delete the extracted Gaijin source material and the scratch copy of the package; keep reports.
@@ -109,7 +111,7 @@ def main():
  # Only publish after the entire build validates; an existing destination is refused.
  assert not out.exists();shutil.copytree(PACKAGE,out,copy_function=shutil.copyfile)
  for row in manifest:assert sha(out/row['file'])==row['sha256'],row['file']
- evidence={'output':str(out),'source_install':str(aot),'base':str(base),'scratch_and_extraction':str(work),'activated':False,'resource_limit_bytes':LIMIT,'dds_count':len(list(out.rglob('*.dds'))),'mgm_count':len(list(out.rglob('*.mgm'))),'protected_unchanged':protected==protection(),'source_files_modified':False,'source_config_sha256':sha(aot/'aces.vromfs.bin'),'aces_vromfs_unpacked':False,'glass_constants':'vanilla P51D15 CanopyGlass (TEST 4 fix)','runtime_acceptance':'Static checks only; in-game flight acceptance pending.'}
+ evidence={'output':str(out),'source_install':str(aot),'base':str(base),'scratch_and_extraction':str(work),'activated':False,'resource_limit_bytes':LIMIT,'dds_count':len(list(out.rglob('*.dds'))),'mgm_count':len(list(out.rglob('*.mgm'))),'protected_unchanged':protected==protection(),'source_files_modified':False,'source_config_sha256':sha(aot/'aces.vromfs.bin'),'aces_vromfs_unpacked':False,'glass_constants':'base pit glass: texture, u8 and CanopyGlass constants of the base WT glass chunk','runtime_acceptance':'Static checks only; in-game flight acceptance pending.'}
  (out/'BUILD_RESULT.json').write_text(json.dumps(evidence,indent=2),encoding='utf-8')
  if cfg.get('keep_source'):evidence['scratch_cleanup']='skipped: keep_source set'
  else:evidence['scratch_cleanup']={'removed_bytes':clean_scratch(work,PACKAGE),'kept':'reports, build-config.json, BUILD_RESULT.json'}

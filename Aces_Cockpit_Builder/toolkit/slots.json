@@ -4,7 +4,7 @@
  "base": {
   "folder_pattern": "^JH_PR_2\\.5 Jungle Hawks - WT (\\d+(\\.\\d+)?)$",
   "fallbacks": ["Pingu's Jungle Hawks v2.5", "JH_PR_2.5 Jungle Hawks - WT 27"],
-  "supported_text": "JH v2.6.3 (Pingu's Jungle Hawks v2.5) or WT 27"
+  "supported_text": "Pingu's Jungle Hawks v2.5 (JH v2.6.3 or later) or WT 27"
  },
  "type98_donor_slot": "Fw190A5",
  "cockpits": [

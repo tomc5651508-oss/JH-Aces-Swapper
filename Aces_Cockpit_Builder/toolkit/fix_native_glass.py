@@ -5,7 +5,7 @@ from slots import GLASS as US
 rows=[]
 for plane,(slot,tex) in US.items():
  donor=B.native(slot)
- reference=next(c for c in donor.chunks if c.shader=='CanopyGlass' and c.stride==40 and any(n.name.startswith('WT_') for n in c.bones) and c.textures and B.Path(c.textures[0]).stem.lower()==tex.lower())
+ reference=next(c for c in donor.chunks if c.shader=='CanopyGlass' and c.stride==40 and any(n.name.startswith('WT_') for n in c.bones) and c.textures and B.Path(c.textures[0]).stem.lower() in (tex.lower(),tex.lower()+'_c'))
  path=B.PACKAGE/f'data/graphics/planes/{slot}/{slot}-C.mgm';m=B.G.read(path);changed=[]
  original=[(c.vertices.tobytes(),c.indices.tobytes()) for c in m.chunks]
  original_motion=[(a,t.node,t.kind,t.keys.tobytes()) for a,an in m.anims for t in an.tracks]
@@ -14,16 +14,16 @@ for plane,(slot,tex) in US.items():
   if not c.textures or B.Path(c.textures[0]).stem.lower() not in ('p51d15na_g',tex.lower()):continue
   assert all(n.name.startswith('AOT25_') for n in c.bones)
   before={'colors':c.colors.hex(),'textures':list(c.textures),'u8':c.u8}
-  # TEST 4: keep the chunk's own vanilla P-51D CanopyGlass constants (template in build_native_overlay);
-  # the WT constants gave tinted, lensing glass. Only the uniform glass texture and u8 come from the reference.
-  c.textures=list(reference.textures);c.u8=reference.u8
+  # The Aces canopy takes the base pit glass: texture (shared WT atlas or pit-only <atlas>_C), u8 and CanopyGlass
+  # constants. WT 27 bases hold the vanilla P-51D constants there (= TEST 4), JH v2.6.3+ the base glass fix.
+  c.textures=list(reference.textures);c.u8=reference.u8;c.colors=reference.colors
   # Same native layout; no UV remapping, new vertex data or visibility changes.
   changed.append({'nodes':[n.name for n in c.bones],'before':before,'after':{'colors':c.colors.hex(),'textures':list(c.textures),'u8':c.u8}})
  assert changed,(plane,'No introduced glass chunk found')
  assert original==[(c.vertices.tobytes(),c.indices.tobytes()) for c in m.chunks]
  assert original_motion==[(a,t.node,t.kind,t.keys.tobytes()) for a,an in m.anims for t in an.tracks]
  raw=B.G.to_bytes(m);assert B.G.to_bytes(B.G.read(raw))==raw;path.write_bytes(raw)
- rpath=B.REPORT/f'{plane}.json';r=json.loads(rpath.read_text());r['glass_fix']={'native_reference_slot':slot,'atlas':tex,'original_stock_P51_window_atlas_removed':True,'vanilla_p51d15_glass_constants_kept':True,'vertex_index_and_animation_buffers_unchanged':True,'changes':changed};B.dump(rpath,r)
+ rpath=B.REPORT/f'{plane}.json';r=json.loads(rpath.read_text());r['glass_fix']={'native_reference_slot':slot,'atlas':tex,'original_stock_P51_window_atlas_removed':True,'base_pit_glass_constants':reference.colors.hex(),'vertex_index_and_animation_buffers_unchanged':True,'changes':changed};B.dump(rpath,r)
  rows.append({'plane':plane,'slot':slot,'changes':changed,'native_reference_base':str(B.BASE)})
 # Retain every current base edit in the aircraft scripts, including WT 19 loadouts.
 merges=[]
