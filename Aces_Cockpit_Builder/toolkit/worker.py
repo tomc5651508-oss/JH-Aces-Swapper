@@ -106,6 +106,10 @@ def main():
  assert all(p.stat().st_size<=LIMIT for p in PACKAGE.rglob('*.dds'))
  readme=(ROOT.parent/'MOD_README.txt').read_text(encoding='utf-8');(PACKAGE/'README.txt').write_text(readme,encoding='utf-8')
  shutil.copyfile(ROOT.parent/'NOTICE.txt',PACKAGE/'NOTICE.txt')
+ # Base files the pack was derived from or replaces: a later JH update shows up as a hash change (pack needs a rebuild).
+ derived={Path(p).resolve().relative_to(base).as_posix() for p in deps if inside(Path(p).resolve(),base)}
+ derived|={p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob('*') if p.is_file() and (base/p.relative_to(PACKAGE)).is_file()}
+ (PACKAGE/'aces_pack_base.json').write_text(json.dumps({'about':'Base files this Aces pack was built from or replaces. Any sha256 that differs from the live base = rebuild the pack. Plane scripts = the base script with only the GunsightPosition line changed.','base_folder':base.name,'base_label':cfg.get('base_label'),'built':datetime.datetime.now().isoformat(timespec='seconds'),'base_files':{r:sha(base/r) for r in sorted(derived)}},indent=2),encoding='utf-8')
  manifest=[{'file':p.relative_to(PACKAGE).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(PACKAGE.rglob('*')) if p.is_file() and p.name not in ('PACKAGE_SHA256.json','BUILD_RESULT.json')]
  (PACKAGE/'PACKAGE_SHA256.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
  # Only publish after the entire build validates; an existing destination is refused.
