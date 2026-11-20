@@ -13,7 +13,7 @@
    "glass_atlas": "F4F4W_glass"},
   {"plane": "f4u_4", "config": "f4u-4", "label": "F4U-4", "jh_type": "F4U-1D Corsair", "slot": "P47D22",
    "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_F4F_Corsair_JH24_US_Sight_Mask"],
-   "glass_atlas": "F4U1DW_glass"},
+   "glass_atlas": "F4U1DW_glass", "keep_base_nodes": ["WT_fuse_1", "WT_fuse_6", "WT_fuse_14"]},
   {"plane": "sbd_3", "config": "sbd-3", "label": "SBD-3", "jh_type": "SBD-3 Dauntless", "slot": "IL2M42",
    "source_optic": "tele", "optic_kind": "aldis_telescope", "sight_target_nodes": ["JH24_Aldis_Aldis_Screen_Vizir05"],
    "glass_atlas": "SBDW_glass", "gunner_turret_script": "data/LuaScripts/WorldObjects/Planes/Turrets/P4_sbd3_Gun_1.txt"},

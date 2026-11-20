@@ -113,8 +113,11 @@ EXCLUDE=re.compile(r'^(?:flare|fire|prop|wing|tail|rudder|elevator|aileron|gear|
 def build(plane,slot):
  out=SOURCE/plane;meta=json.loads(next(out.glob('*metadata.json')).read_text());z=np.load(next(out.glob('*mesh.npz')));nodes={n['name']:n for n in meta['nodes']};mats=meta['materials'];m=native(slot);fit=strip_fit(m)
  baseline_chunks=list(m.chunks);baseline_nodes=list(m.nodes());baseline_motion={(a,t.node,t.kind):t.keys.tobytes() for a,an in m.anims for t in an.tracks if t.kind//100!=0}
- # Keep the entire donor as an invisible native resource contract.
- visibility(m,[n for n in baseline_nodes if n.nverts],0)
+ # Keep the entire donor as an invisible native resource contract, except the base pit nodes named in slots.json
+ # keep_base_nodes (e.g. the WT forward-fuselage shell that stands in for the exterior fuselage hidden in cockpit view).
+ keep=set(BY_PLANE[plane].get('keep_base_nodes',[]));kept=sorted(n.name for n in baseline_nodes if n.name in keep)
+ if keep-set(kept):print('note: keep_base_nodes not in the base pit:',sorted(keep-set(kept)),flush=True)
+ visibility(m,[n for n in baseline_nodes if n.nverts and n.name not in keep],0)
  optic_name=BY_PLANE[plane]['source_optic'];i=next(i for i,o in enumerate(meta['objects']) if o['name']==optic_name)
  source_c=z[f'positions_{i}'].mean(0)*[1,1,-1]
  targets=BY_PLANE[plane]['sight_target_nodes']
@@ -227,7 +230,7 @@ def build(plane,slot):
   c.bone_map=[(n.index,s) for s,n in enumerate(c.bones)]
   assert len(c.bones)<=64
  raw=G.to_bytes(m);p=put(f'data/graphics/planes/{slot}/{slot}-C.mgm',raw);back=G.read(p);assert G.to_bytes(back)==raw
- report={'plane':plane,'slot':slot,'source_model':meta['name'],'placement_translation':T,'eye':eye_rep,'host_fit':None if fit is None else fit[1],'optics':opticrep,'vanilla_templates':{'bump':bump_ref,'glass':glass_ref},'parts':parts,'bindings':bindings,'unbound_moving':unbound,'excluded':excluded,'textures':texrep,'triangles':sum(x['triangles'] for x in parts),'native_file':str(p),'runtime_tested':False,'limitations':['Source variants differ from existing F4F-4, F4U-1D and Ki-61 Ko identities. Host exterior, FM and systems remain inherited.','Gauge physical calibration, damage/night lighting and skin animation need runtime acceptance.']}
+ report={'plane':plane,'slot':slot,'source_model':meta['name'],'placement_translation':T,'eye':eye_rep,'host_fit':None if fit is None else fit[1],'kept_base_nodes':kept,'optics':opticrep,'vanilla_templates':{'bump':bump_ref,'glass':glass_ref},'parts':parts,'bindings':bindings,'unbound_moving':unbound,'excluded':excluded,'textures':texrep,'triangles':sum(x['triangles'] for x in parts),'native_file':str(p),'runtime_tested':False,'limitations':['Source variants differ from existing F4F-4, F4U-1D and Ki-61 Ko identities. Host exterior, FM and systems remain inherited.','Gauge physical calibration, damage/night lighting and skin animation need runtime acceptance.']}
  dump(REPORT/f'{plane}.json',report);print('BUILT',plane,slot,report['triangles'],'tris',len(bindings),'animated objects',flush=True)
  return report
 def main():
