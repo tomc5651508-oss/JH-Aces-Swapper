@@ -2,7 +2,8 @@
   "data/graphics/planes/P51B5/P51B5-C.mgm": [
     "f3a44ca878e2aaeee16185acb35871d9014e2b4ef6ef0be8dec2c877f4e5796f",
     "730f7e1c2f25301679f4a71d7f0dd151c5dde25f8a252d144302f341eb27903e",
-    "e2a5794f4500e20ad9eeb890ef1ed4817a09e6e8008872a73a6fae30e959e543"
+    "e2a5794f4500e20ad9eeb890ef1ed4817a09e6e8008872a73a6fae30e959e543",
+    "75d766eb7fc207bd9f279642a4efadd06fa52168c36e8a7940485befc9c68727"
   ],
   "data/LuaScripts/WorldObjects/planes/P51B5.txt": [
     "3129f41127dc1e5145eead606e10c81ba9116d7545887a857dc3d2a09753bc3e",
@@ -21,7 +22,8 @@
   "data/graphics/planes/P47D22/P47D22-C.mgm": [
     "87210bffe3274ea51d93bea21c0499ec4172505e6261287dba4bf462f5416e39",
     "3781b1ad666032134041493d2d756a23e62fdd10005e132d6350807cd1877864",
-    "ea7cd4af7c3e57b5dd0fc8bfba35a9f56ec914132a6636cd75f0f2dd7d3b5e21"
+    "ea7cd4af7c3e57b5dd0fc8bfba35a9f56ec914132a6636cd75f0f2dd7d3b5e21",
+    "0c13df085d2fccb2d0963c67e9fd3997a8f221f6a57bc6f9eaf43fd99189b9fc"
   ],
   "data/LuaScripts/WorldObjects/planes/P47D22.txt": [
     "53339fd38cd2a4bb1fa9ded6226bbe7ae78c8f96e0b935d931fbb103c565682b",
@@ -40,7 +42,8 @@
   ],
   "data/LuaScripts/WorldObjects/planes/IL2M42.txt": [
     "372e77215163598fec61f17e3716ca9bf15f960af4447d1d45d981ff703290c1",
-    "4a0856434d8a5328ca5652fac2465880835ce97af17271bbce1abc0a6b3dede5"
+    "4a0856434d8a5328ca5652fac2465880835ce97af17271bbce1abc0a6b3dede5",
+    "ba5f95afb7045886a74afea14c8e306a1de8a2c384203a0d677e0cd4680f71ef"
   ],
   "data/LuaScripts/WorldObjects/Bots/JH120_Pilot_IL2M42.txt": [
     "e83f6c0e83bf87373574247c50ef707ceb84db9b28fcc451e45d221c16a30563"
@@ -54,7 +57,8 @@
   ],
   "data/LuaScripts/WorldObjects/planes/Fw190A5.txt": [
     "00117846a52cb9efe85ad5a72093f3c8a6e770ac15d64f12b3c22d6dd403078f",
-    "a66a476ef1cdde6133d9d86d429083b9966e655842a1e4b51e5cf490bc540f4b"
+    "a66a476ef1cdde6133d9d86d429083b9966e655842a1e4b51e5cf490bc540f4b",
+    "04cedac25a74d23b1d5018083d36fb6d38bc6e4f6918d32740190c6e042908d6"
   ],
   "data/LuaScripts/WorldObjects/Bots/P4_Pilot_Fw190A5.txt": [
     "911ff80524b38349e9d4fe1b0f6401b60ae4f55cde8a5eed117f8aa10ed7171e"
@@ -82,7 +86,8 @@
     "dc7a6efc42547d79f4ce8e01480e08985dffd87f37ebdd4627050796730d7a17"
   ],
   "data/LuaScripts/WorldObjects/planes/Bf109F4.txt": [
-    "85d7d4ce8ca9ea6b70572f0899980e560df8c75dc717dbf7b4c9c03f8c022906"
+    "85d7d4ce8ca9ea6b70572f0899980e560df8c75dc717dbf7b4c9c03f8c022906",
+    "b3adddcbdab40a2958079a1392870009b3ec7232fbfe48c8f1e4e89f1ca49843"
   ],
   "data/graphics/planes/Bf109F4/Bf109F4-C.txt": [
     "6b709f74202cf3b614824e80ceacc304a297fb5826f82e089814ba0b632dfc1e"

@@ -3,8 +3,8 @@
  "pack_name": "JH_PR_2.5 WT - Aces Cockpits and Optics",
  "base": {
   "folder_pattern": "^JH_PR_2\\.5 Jungle Hawks - WT (\\d+(\\.\\d+)?)$",
-  "fallbacks": ["JH_PR_2.5 Jungle Hawks - WT 27"],
-  "supported_text": "WT 27"
+  "fallbacks": ["Pingu's Jungle Hawks v2.5", "JH_PR_2.5 Jungle Hawks - WT 27"],
+  "supported_text": "JH v2.6.3 (Pingu's Jungle Hawks v2.5) or WT 27"
  },
  "type98_donor_slot": "Fw190A5",
  "cockpits": [
