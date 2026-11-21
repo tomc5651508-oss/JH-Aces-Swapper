@@ -16,7 +16,7 @@ Requires Windows 10/11 x64, Internet for first setup, and about 15 GB of free sc
 
 ## What it builds
 
-Five cockpits: F4F-3 -> P51B5 slot, F4U-4 -> P47D22, SBD-3 -> IL2M42, A6M3 Model 22 -> Fw190A5, Ki-61-I Tei -> Bf109F4 (WT 27 host; MC202s8 on WT 18 to WT 26). On a re-hosted slot the cockpit is built in the frame of the old host and gets the same Scene Root fit as the base cockpit (WT 27 Bf109F4: pitch -3.29 deg); GunsightPosition, the pilot bot head position and CloseSphere follow that fit. Sights, gauges, normals and animation bindings are converted to native IL-2 materials and passes. The SBD keeps the base's native rear turret, guns and crew/camera attachments. J2M2, SB2C and D4Y have no slot and are not added.
+Four cockpits: F4F-3 -> P51B5 slot, F4U-4 -> P47D22, SBD-3 -> IL2M42, Ki-61-I Tei -> Bf109F4 (WT 27 host; MC202s8 on WT 18 to WT 26). A6M3: not built - the Aces A6M3 pit (slot Fw190A5) hung IL-2 on aircraft select; slots.json blocked_slots keeps every Fw190A5 file and view line out of the pack and the JH A6M3 pit stays. On a re-hosted slot the cockpit is built in the frame of the old host and gets the same Scene Root fit as the base cockpit (WT 27 Bf109F4: pitch -3.29 deg); GunsightPosition, the pilot bot head position and CloseSphere follow that fit. Sights, gauges, normals and animation bindings are converted to native IL-2 materials and passes. The SBD keeps the base's native rear turret, guns and crew/camera attachments. J2M2, SB2C and D4Y have no slot and are not added.
 
 Plane scripts are taken from the selected base; only the `GunsightPosition` line changes. No exterior meshes are written.
 

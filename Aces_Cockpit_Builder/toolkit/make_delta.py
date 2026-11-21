@@ -47,11 +47,32 @@ def _line(text, key, section):
     return None
 
 
+def _blocked():
+    """slots.json blocked_slots: no file and no view line for these slots goes into the pack."""
+    try:
+        from slots import DATA
+        names = DATA.get('blocked_slots', [])
+    except Exception:
+        names = json.loads(Path(__file__).with_name('slots.json').read_text(encoding='utf-8')).get('blocked_slots', [])
+    return [re.compile(rf'(^|[/_]){re.escape(n.lower())}(?![a-z0-9])') for n in names]
+
+
+def is_blocked(rel, pats=None):
+    low = rel.lower()
+    return any(p.search(low) for p in (_blocked() if pats is None else pats))
+
+
 def make_delta(package, base, base_label=None, derived=()):
     package, base = Path(package), Path(base)
-    delta, dropped, kept_text = {}, [], []
+    delta, dropped, kept_text, blocked = {}, [], [], []
+    pats = _blocked()
+    derived = [r for r in derived if not is_blocked(r, pats)]
     for p in sorted(x for x in package.rglob('*') if x.is_file()):
         rel = p.relative_to(package).as_posix()
+        if is_blocked(rel, pats):
+            p.unlink()
+            blocked.append(rel)
+            continue
         b = base / rel
         data = p.read_bytes()
         kind = _kind(rel)
@@ -90,7 +111,7 @@ def make_delta(package, base, base_label=None, derived=()):
         'built': datetime.datetime.now().isoformat(timespec='seconds'),
         'base_files': {r: _sha((base / r).read_bytes()) for r in sorted(rels) if (base / r).is_file()}},
         indent=2) + '\n', encoding='utf-8')
-    return {'delta_lines': len(delta), 'dropped': dropped, 'kept_whole_text': kept_text}
+    return {'delta_lines': len(delta), 'dropped': dropped, 'kept_whole_text': kept_text, 'blocked': blocked}
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ Cockpits:
   F4F-3            -> Wildcat F4F-4 / P51B5 slot
   F4U-4            -> Corsair F4U-1D / P47D22 slot
   SBD-3 Dauntless  -> IL2M42 slot
-  A6M3 Model 22    -> Fw190A5 slot
+  A6M3 Zero        -> not built (JH pit stays; the Aces A6M3 pit hung IL-2 on aircraft select)
   Ki-61-I Tei      -> Ki-61 Ko / Bf109F4 slot (WT 27; MC202s8 on WT 18 to WT 26)
   WT collimator card hide (visibility only, native optical passes kept): Bf110E2, IL2m44, LaGG3s29,
   MosquitoFBMkVIs2, Yak1s69 cockpits (WT 27).

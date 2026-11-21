@@ -7,6 +7,9 @@
   "supported_text": "Pingu's Jungle Hawks v2.5 (JH v2.6.3 or later) or WT 27"
  },
  "type98_donor_slot": "Fw190A5",
+ "_blocked_about": "21 Nov 2026: the Aces A6M3 pit (slot Fw190A5) hung IL-2 on aircraft select in multiplayer. No Aces file and no view line for a blocked slot goes into the pack; the JH A6M3 pit stays. type98_donor_slot is only read from the base (Type 98 reticle source).",
+ "blocked_slots": ["Fw190A5"],
+ "unassigned_blocked": {"a6m3": "a6m3_mod22_zero"},
  "cockpits": [
   {"plane": "f4f_3", "config": "f4f-3", "label": "F4F-3", "jh_type": "F4F-4 Wildcat", "slot": "P51B5",
    "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_US_Sight_Mask", "WT_Sight_Mask"],
@@ -17,8 +20,6 @@
   {"plane": "sbd_3", "config": "sbd-3", "label": "SBD-3", "jh_type": "SBD-3 Dauntless", "slot": "IL2M42",
    "source_optic": "tele", "optic_kind": "aldis_telescope", "sight_target_nodes": ["JH24_Aldis_Aldis_Screen_Vizir05"],
    "glass_atlas": "SBDW_glass", "gunner_turret_script": "data/LuaScripts/WorldObjects/Planes/Turrets/P4_sbd3_Gun_1.txt"},
-  {"plane": "a6m3", "config": "a6m3_mod22_zero", "label": "A6M3", "jh_type": "A6M3 Zero", "slot": "Fw190A5",
-   "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["WT_NATIVE_Type98_Mask"]},
   {"plane": "ki_61", "config": "ki_61_1a_tei", "label": "Ki-61", "jh_type": "Ki-61 Hien", "slot": "Bf109F4",
    "source_optic": "collimator", "optic_kind": "type98_pair", "sight_target_nodes": ["JH24_US_Sight_Mask", "WT_Sight_Mask"],
    "bot": "data/LuaScripts/WorldObjects/Bots/P4_Pilot_MC202s8.txt"}
